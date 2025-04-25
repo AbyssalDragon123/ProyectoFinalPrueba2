@@ -21,21 +21,30 @@ CREATE TABLE docentes (
     asignatura VARCHAR(100) NOT NULL
 );
 
-CREATE TABLE asignaturas (
+CREATE TABLE asignatura (
     id_asignatura INT AUTO_INCREMENT NOT NULL PRIMARY KEY, 
     nombre_asignatura VARCHAR(50) NOT NULL,
-    descripcion_asignatura TEXT, 
-    id_docente INT NOT NULL,
-    FOREIGN KEY (id_docente) REFERENCES docentes(id_docente) 
+    descripcion_asignatura TEXT,
+	Horario_asignatura DATE NOT NULL,
+    id_docente int not null,
+    nombre_docente varchar(50) NOT NULL,
+    apellido_docente varchar(50) not null,
+    FOREIGN KEY (id_docente) REFERENCES docentes(id_docente)
 );
 
 CREATE TABLE notas (
     id_nota INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    id_alumno INT NOT NULL, 
-    id_asignatura INT NOT NULL,
+    id_alumno int not null,
+    nombre_alumno varchar(50) NOT NULL,
+    apellido_alumno varchar(50) not null,
+    id_asignatura int not null,
+    nombre_asignatura varchar(50) NOT NULL,
     nota DECIMAL(5,2) NOT NULL,
     fecha_evaluacion DATE NOT NULL,
-    FOREIGN KEY (id_asignatura) REFERENCES asignaturas(id_asignatura),
-    FOREIGN KEY (id_alumno) REFERENCES estudiantes(id_alumno)
+    FOREIGN KEY (id_asignatura) REFERENCES asignatura(id_asignatura),
+     FOREIGN KEY (id_alumno) REFERENCES estudiantes(id_alumno)
 );
+
+
+
 
