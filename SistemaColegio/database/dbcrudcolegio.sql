@@ -18,6 +18,7 @@ CREATE TABLE docentes (
     apellido_docente VARCHAR(50) NOT NULL, 
     email_docente VARCHAR(100)NOT NULL,
     telefono_docente VARCHAR(15)NOT NULL,
+    genero_docente varchar(50) not null,
     asignatura VARCHAR(100) NOT NULL
 );
 
@@ -44,6 +45,7 @@ CREATE TABLE notas (
     FOREIGN KEY (id_asignatura) REFERENCES asignatura(id_asignatura),
      FOREIGN KEY (id_alumno) REFERENCES estudiantes(id_alumno)
 );
+
 
 
 

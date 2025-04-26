@@ -11,6 +11,10 @@ package com.mycompany.crudcolegio;
 public class CrudColegio {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+       Configuracion.Conexion objetoConexion = new Configuracion.Conexion();
+        objetoConexion.estableceConexion();
+        
+        Formularios.menuPrincipal objetoMenuPrincipal = new Formularios.menuPrincipal();
+        objetoMenuPrincipal.setVisible(true);
     }
 }
