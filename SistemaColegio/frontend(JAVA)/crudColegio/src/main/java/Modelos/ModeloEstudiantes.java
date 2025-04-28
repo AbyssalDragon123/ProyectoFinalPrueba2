@@ -9,14 +9,14 @@ package Modelos;
  * @author Admin
  */
 public class ModeloEstudiantes {
-    int id_alumno;
+int id_alumno;
 String nombre_alumno ;
 String apellido_alumno ;
 String grado_alumno;
 String gmail_alumno ;
 int telefono_alumno ;
- String genero ; 
- 
+String genero ; 
+
     public int getId_alumno() {
         return id_alumno;
     }
@@ -73,4 +73,6 @@ int telefono_alumno ;
         this.genero = genero;
     }
 
+ 
+    
 }
