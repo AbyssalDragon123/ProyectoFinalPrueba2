@@ -12,47 +12,47 @@ namespace ColegioAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AlumnoesController : ControllerBase
+    public class NotasController : ControllerBase
     {
         private readonly AppDbContext _context;
 
-        public AlumnoesController(AppDbContext context)
+        public NotasController(AppDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Alumnoes
+        // GET: api/Notas
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Alumno>>> GetAlumno()
+        public async Task<ActionResult<IEnumerable<Notas>>> GetNotas()
         {
-            return await _context.Alumno.ToListAsync();
+            return await _context.Notas.ToListAsync();
         }
 
-        // GET: api/Alumnoes/5
+        // GET: api/Notas/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Alumno>> GetAlumno(int id)
+        public async Task<ActionResult<Notas>> GetNotas(int id)
         {
-            var alumno = await _context.Alumno.FindAsync(id);
+            var notas = await _context.Notas.FindAsync(id);
 
-            if (alumno == null)
+            if (notas == null)
             {
                 return NotFound();
             }
 
-            return alumno;
+            return notas;
         }
 
-        // PUT: api/Alumnoes/5
+        // PUT: api/Notas/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAlumno(int id, Alumno alumno)
+        public async Task<IActionResult> PutNotas(int id, Notas notas)
         {
-            if (id != alumno.IdAlumno)
+            if (id != notas.IdNotas)
             {
                 return BadRequest();
             }
 
-            _context.Entry(alumno).State = EntityState.Modified;
+            _context.Entry(notas).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +60,7 @@ namespace ColegioAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!AlumnoExists(id))
+                if (!NotasExists(id))
                 {
                     return NotFound();
                 }
@@ -73,36 +73,36 @@ namespace ColegioAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Alumnoes
+        // POST: api/Notas
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Alumno>> PostAlumno(Alumno alumno)
+        public async Task<ActionResult<Notas>> PostNotas(Notas notas)
         {
-            _context.Alumno.Add(alumno);
+            _context.Notas.Add(notas);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetAlumno", new { id = alumno.IdAlumno }, alumno);
+            return CreatedAtAction("GetNotas", new { id = notas.IdNotas }, notas);
         }
 
-        // DELETE: api/Alumnoes/5
+        // DELETE: api/Notas/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAlumno(int id)
+        public async Task<IActionResult> DeleteNotas(int id)
         {
-            var alumno = await _context.Alumno.FindAsync(id);
-            if (alumno == null)
+            var notas = await _context.Notas.FindAsync(id);
+            if (notas == null)
             {
                 return NotFound();
             }
 
-            _context.Alumno.Remove(alumno);
+            _context.Notas.Remove(notas);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool AlumnoExists(int id)
+        private bool NotasExists(int id)
         {
-            return _context.Alumno.Any(e => e.IdAlumno == id);
+            return _context.Notas.Any(e => e.IdNotas == id);
         }
     }
 }

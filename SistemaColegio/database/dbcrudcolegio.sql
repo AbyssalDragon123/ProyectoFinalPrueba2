@@ -16,13 +16,13 @@ CREATE TABLE IF NOT EXISTS usuario (
 
 -- crear tabla de encargado
 create table IF NOT EXISTS encargado(
-id_encargado INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+id_encargado INT AUTO_INCREMENT PRIMARY KEY,
 nombre_encargado varchar (50) NOT NULL,
 apellido_encargado varchar (50) NOT NULL,
 correo_encargado varchar (100)NOT NULL,
-telefono_encargado int NOT NULL,
+telefono_encargado varchar (20) NOT NULL,
 direccion_encargado char (50) NOT NULL,
-dpi_encargado int NOT NULL
+dpi_encargado varchar (20) NOT NULL
 );
 
 -- crear tabla de grado
@@ -38,7 +38,7 @@ id_alumno INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
 nombre_alumno varchar (50) NOT NULL,
 apellido_alumno varchar (50) NOT NULL,
 gmail_alumno char (30) NULL,
-telefono_alumno int NOT NULL,
+telefono_alumno varchar (10) NOT NULL,
 genero_alumno char(1) NOT NULL,
 
 fk_id_encargado int NOT NULL,
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS docentes (
     fk_id_grado INT NOT NULL,
     fk_id_usuario INT NOT NULL,
     FOREIGN KEY (fk_id_grado) REFERENCES grado(id_grado),
-    FOREIGN KEY (fk_id_usuario) REFERENCES usuarios(id_usuario)
+    FOREIGN KEY (fk_id_usuario) REFERENCES usuario(id_usuario)
 );
 
 

@@ -12,47 +12,47 @@ namespace ColegioAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AlumnoesController : ControllerBase
+    public class GradoesController : ControllerBase
     {
         private readonly AppDbContext _context;
 
-        public AlumnoesController(AppDbContext context)
+        public GradoesController(AppDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Alumnoes
+        // GET: api/Gradoes
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Alumno>>> GetAlumno()
+        public async Task<ActionResult<IEnumerable<Grado>>> GetGrado()
         {
-            return await _context.Alumno.ToListAsync();
+            return await _context.Grado.ToListAsync();
         }
 
-        // GET: api/Alumnoes/5
+        // GET: api/Gradoes/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Alumno>> GetAlumno(int id)
+        public async Task<ActionResult<Grado>> GetGrado(int id)
         {
-            var alumno = await _context.Alumno.FindAsync(id);
+            var grado = await _context.Grado.FindAsync(id);
 
-            if (alumno == null)
+            if (grado == null)
             {
                 return NotFound();
             }
 
-            return alumno;
+            return grado;
         }
 
-        // PUT: api/Alumnoes/5
+        // PUT: api/Gradoes/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAlumno(int id, Alumno alumno)
+        public async Task<IActionResult> PutGrado(int id, Grado grado)
         {
-            if (id != alumno.IdAlumno)
+            if (id != grado.IdGrado)
             {
                 return BadRequest();
             }
 
-            _context.Entry(alumno).State = EntityState.Modified;
+            _context.Entry(grado).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +60,7 @@ namespace ColegioAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!AlumnoExists(id))
+                if (!GradoExists(id))
                 {
                     return NotFound();
                 }
@@ -73,36 +73,36 @@ namespace ColegioAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Alumnoes
+        // POST: api/Gradoes
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Alumno>> PostAlumno(Alumno alumno)
+        public async Task<ActionResult<Grado>> PostGrado(Grado grado)
         {
-            _context.Alumno.Add(alumno);
+            _context.Grado.Add(grado);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetAlumno", new { id = alumno.IdAlumno }, alumno);
+            return CreatedAtAction("GetGrado", new { id = grado.IdGrado }, grado);
         }
 
-        // DELETE: api/Alumnoes/5
+        // DELETE: api/Gradoes/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAlumno(int id)
+        public async Task<IActionResult> DeleteGrado(int id)
         {
-            var alumno = await _context.Alumno.FindAsync(id);
-            if (alumno == null)
+            var grado = await _context.Grado.FindAsync(id);
+            if (grado == null)
             {
                 return NotFound();
             }
 
-            _context.Alumno.Remove(alumno);
+            _context.Grado.Remove(grado);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool AlumnoExists(int id)
+        private bool GradoExists(int id)
         {
-            return _context.Alumno.Any(e => e.IdAlumno == id);
+            return _context.Grado.Any(e => e.IdGrado == id);
         }
     }
 }
