@@ -11,8 +11,8 @@ package com.mycompany.crudcolegio;
 public class CrudColegio {
 
     public static void main(String[] args) {
-       Configuracion.Conexion objetoConexion = new Configuracion.Conexion();
-        objetoConexion.estableceConexion();
+      // Configuracion.Conexion objetoConexion = new Configuracion.Conexion();
+        //objetoConexion.estableceConexion();
         
         Formularios.menuPrincipal objetoMenuPrincipal = new Formularios.menuPrincipal();
         objetoMenuPrincipal.setVisible(true);

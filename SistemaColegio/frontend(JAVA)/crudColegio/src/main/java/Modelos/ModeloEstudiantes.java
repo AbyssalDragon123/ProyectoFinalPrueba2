@@ -2,67 +2,82 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Modelos;
-
 /**
  *
  * @author Admin
  */
+package Modelos;
+
 public class ModeloEstudiantes {
-int id_alumno;
-String nombre_alumno ;
-String apellido_alumno ;
-String grado_alumno;
-String gmail_alumno ;
-int telefono_alumno ;
-String genero ; 
 
-    public int getId_alumno() {
-        return id_alumno;
+    private int idAlumno;
+    private String nombre;
+    private String apellido;
+    private String grado; // ahora es un objeto
+    private String gmail;
+    private String telefono;
+    private String genero;
+    
+    // Constructores
+    public ModeloEstudiantes() {}
+
+    public ModeloEstudiantes(int idAlumno, String nombre, String apellido,
+                         String grado, String gmail, String telefono, String genero) {
+        this.idAlumno = idAlumno;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.grado = grado;
+        this.gmail = gmail;
+        this.telefono = telefono;
+        this.genero = genero;
+    }
+    
+    public int getIdAlumno() {
+        return idAlumno;
     }
 
-    public void setId_alumno(int id_alumno) {
-        this.id_alumno = id_alumno;
+    public void setIdAlumno(int idAlumno) {
+        this.idAlumno = idAlumno;
     }
 
-    public String getNombre_alumno() {
-        return nombre_alumno;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setNombre_alumno(String nombre_alumno) {
-        this.nombre_alumno = nombre_alumno;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public String getApellido_alumno() {
-        return apellido_alumno;
+    public String getApellido() {
+        return apellido;
     }
 
-    public void setApellido_alumno(String apellido_alumno) {
-        this.apellido_alumno = apellido_alumno;
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
-    public String getGrado_alumno() {
-        return grado_alumno;
+    public String getGrado() {
+        return grado;
     }
 
-    public void setGrado_alumno(String grado_alumno) {
-        this.grado_alumno = grado_alumno;
+    public void setGrado(String grado) {
+        this.grado = grado;
     }
 
-    public String getGmail_alumno() {
-        return gmail_alumno;
+    public String getGmail() {
+        return gmail;
     }
 
-    public void setGmail_alumno(String gmail_alumno) {
-        this.gmail_alumno = gmail_alumno;
+    public void setGmail(String gmail) {
+        this.gmail = gmail;
     }
 
-    public int getTelefono_alumno() {
-        return telefono_alumno;
+    public String getTelefono() {
+        return telefono;
     }
 
-    public void setTelefono_alumno(int telefono_alumno) {
-        this.telefono_alumno = telefono_alumno;
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
     public String getGenero() {
@@ -72,7 +87,9 @@ String genero ;
     public void setGenero(String genero) {
         this.genero = genero;
     }
-
- 
     
+    @Override
+    public String toString() {
+        return nombre + " " + apellido + " (" + gmail + ")";
+}
 }
