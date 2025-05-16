@@ -45,7 +45,7 @@ public class menuPrincipal extends javax.swing.JFrame {
         kGradientPanel1.setkEndColor(new java.awt.Color(51, 51, 51));
         kGradientPanel1.setkStartColor(new java.awt.Color(153, 153, 153));
 
-        btnAlumnos.setText("ALUMNOS");
+        btnAlumnos.setText("ASIGNATURAS");
         btnAlumnos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAlumnosActionPerformed(evt);
@@ -57,7 +57,7 @@ public class menuPrincipal extends javax.swing.JFrame {
         kGradientPanel1Layout.setHorizontalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
-                .addContainerGap(24, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22))
         );
@@ -73,7 +73,7 @@ public class menuPrincipal extends javax.swing.JFrame {
         panelFormularios.setLayout(panelFormulariosLayout);
         panelFormulariosLayout.setHorizontalGroup(
             panelFormulariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1014, Short.MAX_VALUE)
+            .addGap(0, 1050, Short.MAX_VALUE)
         );
         panelFormulariosLayout.setVerticalGroup(
             panelFormulariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -85,7 +85,7 @@ public class menuPrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(kGradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(kGradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelFormularios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -100,9 +100,9 @@ public class menuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlumnosActionPerformed
-Formularios.Estudiantes objetoFormularioEstudiantes = new Formularios.Estudiantes();
-        panelFormularios.add(objetoFormularioEstudiantes);
-        objetoFormularioEstudiantes.setVisible(true);
+    Formularios.Asignatura objetoFormularioAsignatura = new Formularios.Asignatura();
+    panelFormularios.add(objetoFormularioAsignatura);
+    objetoFormularioAsignatura.setVisible(true);
     }//GEN-LAST:event_btnAlumnosActionPerformed
     /**
      * @param args the command line arguments

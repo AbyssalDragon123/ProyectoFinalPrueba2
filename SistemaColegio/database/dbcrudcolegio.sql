@@ -70,20 +70,20 @@ CREATE TABLE IF NOT EXISTS unidad (
 );
 
 -- Tabla notas
-CREATE TABLE IF NOT EXISTS notas (
-    id_notas INT AUTO_INCREMENT PRIMARY KEY,
+	CREATE TABLE IF NOT EXISTS notas (
+		id_notas INT AUTO_INCREMENT PRIMARY KEY,
 
-    nota DECIMAL(5,2) NOT NULL,
-	descripcion TEXT NOT NULL,
-	fk_id_alumno INT NOT NULL,
-    fk_id_grado_seccion INT NOT NULL,
-	fk_id_docente INT NOT NULL,
-    fk_id_asignatura INT NOT NULL,
-    fk_id_unidad INT NOT NULL,
-    FOREIGN KEY (fk_id_docente) REFERENCES docente(id_docente) ON DELETE CASCADE,
-    FOREIGN KEY (fk_id_asignatura) REFERENCES asignatura(id_asignatura) ON DELETE CASCADE,
-    FOREIGN KEY (fk_id_unidad) REFERENCES unidad(id_unidad) ON DELETE CASCADE,
-	FOREIGN KEY (fk_id_alumno) REFERENCES alumno(id_alumno) ON DELETE CASCADE,
-	FOREIGN KEY (fk_id_docente) REFERENCES grado_seccion(id_grado_seccion) ON DELETE CASCADE
-);
+		nota DECIMAL(5,2) NOT NULL,
+		descripcion TEXT NOT NULL,
+		fk_id_alumno INT NOT NULL,
+		fk_id_grado_seccion INT NOT NULL,
+		fk_id_docente INT NOT NULL,
+		fk_id_asignatura INT NOT NULL,
+		fk_id_unidad INT NOT NULL,
+		FOREIGN KEY (fk_id_docente) REFERENCES docente(id_docente) ON DELETE CASCADE,
+		FOREIGN KEY (fk_id_asignatura) REFERENCES asignatura(id_asignatura) ON DELETE CASCADE,
+		FOREIGN KEY (fk_id_unidad) REFERENCES unidad(id_unidad) ON DELETE CASCADE,
+		FOREIGN KEY (fk_id_alumno) REFERENCES alumno(id_alumno) ON DELETE CASCADE,
+		FOREIGN KEY (fk_id_grado_seccion) REFERENCES grado_seccion(id_grado_seccion) ON DELETE CASCADE
+	);
 

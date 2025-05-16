@@ -5,14 +5,14 @@ using ColegioAPI.Models;
 [Table("asignatura")]
 public class Asignatura
 {
-    [Key]
-    [Column("id_asignatura")]
-    public int IdAsignatura { get; set; }
+    [Key] // llave primaria
+    [Column("id_asignatura")] // nombre de la columna en la base de datos
+    public int IdAsignatura { get; set; } // id de la asignatura
 
-    [Required]
-    [MaxLength(50)]
+    [Required] // campo requerido
+    [MaxLength(50)] // longitud maxima
     [Column("nombre_asignatura")]
-    public string NombreAsignatura { get; set; } = string.Empty;
+    public string NombreAsignatura { get; set; } = string.Empty; 
 
     [Column("descripcion_asignatura")]
     public string? DescripcionAsignatura { get; set; }
@@ -21,6 +21,6 @@ public class Asignatura
     [Column("fk_id_docente")]
     public int FkIdDocente { get; set; }
 
-    [ForeignKey("FkIdDocente")]
-    public Docente Docente { get; set; } = null!;
+    [ForeignKey("FkIdDocente")] // llave foranea
+    public Docente Docente { get; set; } = null!; // docente que imparte la asignatura
 }
