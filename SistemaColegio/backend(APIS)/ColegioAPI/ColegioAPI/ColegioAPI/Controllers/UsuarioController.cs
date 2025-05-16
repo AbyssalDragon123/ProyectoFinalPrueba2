@@ -6,52 +6,53 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ColegioAPI.Data;
+using ColegioAPI.Models;
 
 namespace ColegioAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AsignaturaController : ControllerBase
+    public class UsuarioController : ControllerBase
     {
         private readonly AppDbContext _context;
 
-        public AsignaturaController(AppDbContext context)
+        public UsuarioController(AppDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Asignatura
+        // GET: api/Usuario
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Asignatura>>> GetAsignaturas()
+        public async Task<ActionResult<IEnumerable<Usuario>>> GetUsuarios()
         {
-            return await _context.Asignaturas.ToListAsync();
+            return await _context.Usuario.ToListAsync();
         }
 
-        // GET: api/Asignatura/5
+        // GET: api/Usuario/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Asignatura>> GetAsignatura(int id)
+        public async Task<ActionResult<Usuario>> GetUsuario(int id)
         {
-            var asignatura = await _context.Asignaturas.FindAsync(id);
+            var usuario = await _context.Usuario.FindAsync(id);
 
-            if (asignatura == null)
+            if (usuario == null)
             {
                 return NotFound();
             }
 
-            return asignatura;
+            return usuario;
         }
 
-        // PUT: api/Asignatura/5
+        // PUT: api/Usuario/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAsignatura(int id, Asignatura asignatura)
+        public async Task<IActionResult> PutUsuario(int id, Usuario usuario)
         {
-            if (id != asignatura.IdAsignatura)
+            if (id != usuario.IdUsuario)
             {
-                return BadRequest("ID no coincide");
+                return BadRequest();
             }
 
-            _context.Entry(asignatura).State = EntityState.Modified;
+            _context.Entry(usuario).State = EntityState.Modified;
 
             try
             {
@@ -59,7 +60,7 @@ namespace ColegioAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!AsignaturaExists(id))
+                if (!UsuarioExists(id))
                 {
                     return NotFound();
                 }
@@ -72,36 +73,36 @@ namespace ColegioAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Asignatura
+        // POST: api/Usuario
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Asignatura>> PostAsignatura(Asignatura asignatura)
+        public async Task<ActionResult<Usuario>> PostUsuario(Usuario usuario)
         {
-            _context.Asignaturas.Add(asignatura);
+            _context.Usuario.Add(usuario);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetAsignatura", new { id = asignatura.IdAsignatura }, asignatura);
+            return CreatedAtAction("GetUsuario", new { id = usuario.IdUsuario }, usuario);
         }
 
-        // DELETE: api/Asignatura/5
+        // DELETE: api/Usuario/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAsignatura(int id)
+        public async Task<IActionResult> DeleteUsuario(int id)
         {
-            var asignatura = await _context.Asignaturas.FindAsync(id);
-            if (asignatura == null)
+            var usuario = await _context.Usuario.FindAsync(id);
+            if (usuario == null)
             {
                 return NotFound();
             }
 
-            _context.Asignaturas.Remove(asignatura);
+            _context.Usuario.Remove(usuario);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool AsignaturaExists(int id)
+        private bool UsuarioExists(int id)
         {
-            return _context.Asignaturas.Any(e => e.IdAsignatura == id);
+            return _context.Usuario.Any(e => e.IdUsuario == id);
         }
     }
 }

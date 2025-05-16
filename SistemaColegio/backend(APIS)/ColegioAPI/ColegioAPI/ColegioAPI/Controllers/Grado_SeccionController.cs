@@ -25,14 +25,14 @@ namespace ColegioAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Grado_Seccion>>> GetGradosSecciones()
         {
-            return await _context.GradosSecciones.ToListAsync();
+            return await _context.Grados_Seccion.ToListAsync();
         }
 
         // GET: api/Grado_Seccion/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Grado_Seccion>> GetGrado_Seccion(int id)
         {
-            var grado_Seccion = await _context.GradosSecciones.FindAsync(id);
+            var grado_Seccion = await _context.Grados_Seccion.FindAsync(id);
 
             if (grado_Seccion == null)
             {
@@ -78,7 +78,7 @@ namespace ColegioAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Grado_Seccion>> PostGrado_Seccion(Grado_Seccion grado_Seccion)
         {
-            _context.GradosSecciones.Add(grado_Seccion);
+            _context.Grados_Seccion.Add(grado_Seccion);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetGrado_Seccion", new { id = grado_Seccion.IdGradoSeccion }, grado_Seccion);
@@ -88,13 +88,13 @@ namespace ColegioAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteGrado_Seccion(int id)
         {
-            var grado_Seccion = await _context.GradosSecciones.FindAsync(id);
+            var grado_Seccion = await _context.Grados_Seccion.FindAsync(id);
             if (grado_Seccion == null)
             {
                 return NotFound();
             }
 
-            _context.GradosSecciones.Remove(grado_Seccion);
+            _context.Grados_Seccion.Remove(grado_Seccion);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -102,7 +102,7 @@ namespace ColegioAPI.Controllers
 
         private bool Grado_SeccionExists(int id)
         {
-            return _context.GradosSecciones.Any(e => e.IdGradoSeccion == id);
+            return _context.Grados_Seccion.Any(e => e.IdGradoSeccion == id);
         }
     }
 }

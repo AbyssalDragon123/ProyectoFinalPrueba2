@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace ColegioAPI.Models
 {
@@ -16,46 +17,47 @@ namespace ColegioAPI.Models
 
         [Required]
         [Column("descripcion")]
-        public string Descripcion { get; set; } = null!;
+        public string Descripcion { get; set; } = string.Empty;
 
-        // Clave foránea a Alumno
         [Required]
         [Column("fk_id_alumno")]
         public int FkIdAlumno { get; set; }
 
-        [ForeignKey("FkIdAlumno")]
-        public Alumnos Alumno { get; set; } = null!;
-
-        // Clave foránea a Grado_Seccion
         [Required]
         [Column("fk_id_grado_seccion")]
         public int FkIdGradoSeccion { get; set; }
 
-        [ForeignKey("FkIdGradoSeccion")]
-        public Grado_Seccion GradoSeccion { get; set; } = null!;
-
-        // Clave foránea a Docente
         [Required]
         [Column("fk_id_docente")]
         public int FkIdDocente { get; set; }
 
-        [ForeignKey("FkIdDocente")]
-        public Docente Docente { get; set; } = null!;
-
-        // Clave foránea a Asignatura
         [Required]
         [Column("fk_id_asignatura")]
         public int FkIdAsignatura { get; set; }
 
-        [ForeignKey("FkIdAsignatura")]
-        public Asignatura Asignatura { get; set; } = null!;
-
-        // Clave foránea a Unidad
         [Required]
         [Column("fk_id_unidad")]
         public int FkIdUnidad { get; set; }
 
+        // Propiedades de navegación (relaciones)
+        [ForeignKey("FkIdAlumno")]
+        [JsonIgnore]
+        public virtual Alumnos? Alumno { get; set; } = null!;
+
+        [ForeignKey("FkIdGradoSeccion")]
+        [JsonIgnore]
+        public virtual Grado_Seccion? GradoSeccion { get; set; } = null!;
+
+        [ForeignKey("FkIdDocente")]
+        [JsonIgnore]
+        public virtual Docente? Docente { get; set; } = null!;
+
+        [ForeignKey("FkIdAsignatura")]
+        [JsonIgnore]
+        public virtual Asignatura? Asignatura { get; set; } = null!;
+
         [ForeignKey("FkIdUnidad")]
-        public Unidad Unidad { get; set; } = null!;
+        [JsonIgnore]
+        public virtual Unidad? Unidad { get; set; } = null!;
     }
 }

@@ -12,47 +12,47 @@ namespace ColegioAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DocenteController : ControllerBase
+    public class EncargadoController : ControllerBase
     {
         private readonly AppDbContext _context;
 
-        public DocenteController(AppDbContext context)
+        public EncargadoController(AppDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Docente
+        // GET: api/Encargado
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Docente>>> GetDocentes()
+        public async Task<ActionResult<IEnumerable<Encargado>>> GetEncargados()
         {
-            return await _context.Docentes.ToListAsync();
+            return await _context.Encargado.ToListAsync();
         }
 
-        // GET: api/Docente/5
+        // GET: api/Encargado/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Docente>> GetDocente(int id)
+        public async Task<ActionResult<Encargado>> GetEncargado(int id)
         {
-            var docente = await _context.Docentes.FindAsync(id);
+            var encargado = await _context.Encargado.FindAsync(id);
 
-            if (docente == null)
+            if (encargado == null)
             {
                 return NotFound();
             }
 
-            return docente;
+            return encargado;
         }
 
-        // PUT: api/Docente/5
+        // PUT: api/Encargado/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutDocente(int id, Docente docente)
+        public async Task<IActionResult> PutEncargado(int id, Encargado encargado)
         {
-            if (id != docente.IdDocente)
+            if (id != encargado.IdEncargado)
             {
                 return BadRequest();
             }
 
-            _context.Entry(docente).State = EntityState.Modified;
+            _context.Entry(encargado).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +60,7 @@ namespace ColegioAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!DocenteExists(id))
+                if (!EncargadoExists(id))
                 {
                     return NotFound();
                 }
@@ -73,36 +73,36 @@ namespace ColegioAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Docente
+        // POST: api/Encargado
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Docente>> PostDocente(Docente docente)
+        public async Task<ActionResult<Encargado>> PostEncargado(Encargado encargado)
         {
-            _context.Docentes.Add(docente);
+            _context.Encargado.Add(encargado);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetDocente", new { id = docente.IdDocente }, docente);
+            return CreatedAtAction("GetEncargado", new { id = encargado.IdEncargado }, encargado);
         }
 
-        // DELETE: api/Docente/5
+        // DELETE: api/Encargado/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteDocente(int id)
+        public async Task<IActionResult> DeleteEncargado(int id)
         {
-            var docente = await _context.Docentes.FindAsync(id);
-            if (docente == null)
+            var encargado = await _context.Encargado.FindAsync(id);
+            if (encargado == null)
             {
                 return NotFound();
             }
 
-            _context.Docentes.Remove(docente);
+            _context.Encargado.Remove(encargado);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool DocenteExists(int id)
+        private bool EncargadoExists(int id)
         {
-            return _context.Docentes.Any(e => e.IdDocente == id);
+            return _context.Encargado.Any(e => e.IdEncargado == id);
         }
     }
 }
