@@ -1,5 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ColegioAPI.Models
 {
@@ -11,9 +11,9 @@ namespace ColegioAPI.Models
         public int IdUnidad { get; set; }
 
         [Required]
+        [MaxLength(50)]
         [Column("unidad")]
-        [StringLength(50)]
         public string NombreUnidad { get; set; } = string.Empty;
     }
-
 }
+

@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ColegioAPI.Models
@@ -13,25 +12,21 @@ namespace ColegioAPI.Models
 
         [Required]
         [Column("username")]
-        [StringLength(50)]
-        public string Username { get; set; } = string.Empty;
+        [MaxLength(50)]
+        public string Username { get; set; } = null!;
 
         [Required]
         [Column("pass")]
-        [StringLength(255)]
-        public string Pass { get; set; } = string.Empty;
+        [MaxLength(255)]
+        public string Pass { get; set; } = null!;
 
         [Column("email")]
-        [StringLength(100)]
-        [EmailAddress]
+        [MaxLength(100)]
         public string? Email { get; set; }
 
+        [Required]
         [Column("rol")]
-        [StringLength(10)] // Máximo largo de 'director'
-        public string Rol { get; set; } = "docente";
-
-        [Column("fecha_registro")]
-        public DateTime FechaRegistro { get; set; } = DateTime.Now;
+        [MaxLength(20)]
+        public string Rol { get; set; } = "docente"; // ENUM simulado como string
     }
 }
-

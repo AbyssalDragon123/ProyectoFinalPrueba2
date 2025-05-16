@@ -3,43 +3,41 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ColegioAPI.Models
 {
-        [Table("encargado")]
-        public class Encargado
-        {
-            [Key]
-            [Column("id_encargado")]
-            public int IdEncargado { get; set; }
+    [Table("encargado")]
+    public class Encargado
+    {
+        [Key]
+        [Column("id_encargado")]
+        public int IdEncargado { get; set; }
 
-            [Required]
-            [Column("nombre_encargado")]
-            [StringLength(50)]
-            public string NombreEncargado { get; set; } = string.Empty;
+        [Required]
+        [MaxLength(50)]
+        [Column("nombre_encargado")]
+        public string NombreEncargado { get; set; } = string.Empty;
 
-            [Required]
-            [Column("apellido_encargado")]
-            [StringLength(50)]
-            public string ApellidoEncargado { get; set; } = string.Empty;
+        [Required]
+        [MaxLength(50)]
+        [Column("apellido_encargado")]
+        public string ApellidoEncargado { get; set; } = string.Empty;
 
-            [Required]
-            [Column("correo_encargado")]
-            [StringLength(100)]
-            [EmailAddress]
-            public string CorreoEncargado { get; set; } = string.Empty;
+        [Required]
+        [MaxLength(100)]
+        [Column("correo_encargado")]
+        public string CorreoEncargado { get; set; } = string.Empty;
 
-            [Required]
-            [Column("telefono_encargado")]
-            [StringLength(20)]
-            public string TelefonoEncargado { get; set; } = string.Empty;
+        [Required]
+        [MaxLength(20)]
+        [Column("telefono_encargado")]
+        public string TelefonoEncargado { get; set; } = string.Empty;
 
-            [Required]
-            [Column("direccion_encargado")]
-            [StringLength(50)]
-            public string DireccionEncargado { get; set; } = string.Empty;
+        [Required]
+        [MaxLength(50)]
+        [Column("direccion_encargado")]
+        public string DireccionEncargado { get; set; } = string.Empty;
 
-            [Required]
-            [Column("dpi_encargado")]
-            [StringLength(20)]
-            public string DpiEncargado { get; set; } = string.Empty;
-        }
-
+        [Required]
+        [MaxLength(20)]
+        [Column("dpi_encargado")]
+        public string DpiEncargado { get; set; } = string.Empty;
     }
+}
