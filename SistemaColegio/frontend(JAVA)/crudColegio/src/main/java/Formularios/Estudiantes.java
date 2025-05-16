@@ -5,17 +5,6 @@
 package Formularios;
 
 
-import Modelos.ModeloEstudiantes;
-import Service.ServiceAlumno;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.List;
-import javax.swing.ButtonGroup;
-import javax.swing.JButton;
-import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.table.DefaultTableModel;
 
   
 /**
@@ -24,161 +13,14 @@ import javax.swing.table.DefaultTableModel;
  */
 
 public class Estudiantes extends javax.swing.JInternalFrame {
-private void cargarAlumnosDesdeAPI() {
-       try {
-        // Llamar al servicio que consume la API
-        ServiceAlumno serviceAlumno = new ServiceAlumno();
-        List<ModeloEstudiantes> alumnos = serviceAlumno.obtenerAlumnos();
 
-        // Crear el modelo de la tabla
-        DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("ID Alumno");  // Esta se ocultará después
-        model.addColumn("Nombre");
-        model.addColumn("Apellido");
-        model.addColumn("Grado");
-        model.addColumn("Gmail");
-        model.addColumn("Teléfono");
-        model.addColumn("Genero");
+    //metodo para limpiar campos
 
-        // Agregar los datos al modelo
-        for (ModeloEstudiantes alumno : alumnos) {
-            model.addRow(new Object[]{
-                alumno.getIdAlumno(),
-                alumno.getNombre(),
-                alumno.getApellido(),
-                alumno.getGrado(),
-                alumno.getGmail(),
-                alumno.getTelefono(),
-                alumno.getGenero()
-            });
-        }
-
-        // Establecer el modelo después de agregar filas
-        tblalumnos.setModel(model);
-
-        // Ajustar ancho de columnas
-        tblalumnos.getColumnModel().getColumn(1).setPreferredWidth(100); // Nombre
-        tblalumnos.getColumnModel().getColumn(2).setPreferredWidth(100); // Apellido
-        tblalumnos.getColumnModel().getColumn(3).setPreferredWidth(80);  // Grado
-        tblalumnos.getColumnModel().getColumn(4).setPreferredWidth(150); // Gmail
-        tblalumnos.getColumnModel().getColumn(5).setPreferredWidth(100); // Teléfono
-        tblalumnos.getColumnModel().getColumn(6).setPreferredWidth(80);  // Género
-
-        // Ocultar columna ID (la primera)
-        tblalumnos.getColumnModel().getColumn(0).setMinWidth(0);
-        tblalumnos.getColumnModel().getColumn(0).setMaxWidth(0);
-        tblalumnos.getColumnModel().getColumn(0).setWidth(0);
-
-    } catch (Exception e) {
-        e.printStackTrace();
-        JOptionPane.showMessageDialog(this, "Error al cargar los alumnos desde la API: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-    }
-    }
-
-            
+        
+      
    /**
      * 
      */
-    public Estudiantes() {
-initComponents();
-
-        // Ocultar el idCliente
-        txtIdAlumnos.setVisible(false);
-
-        cargarAlumnosDesdeAPI();
-
-        ButtonGroup grupoGenero = new ButtonGroup();
-        grupoGenero.add(rbmasculinoAlumnos);
-        grupoGenero.add(rbfemeninoAlumnos);
-
-        // Agregar ActionListener al botón Eliminar (¡Una sola vez en el constructor!)
-        bteliminarAlumnos.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Verificar si hay una fila seleccionada en la tabla
-                int rowSeleccionada = tblalumnos.getSelectedRow();
-
-                // Si una fila está seleccionada, obtener el ID del alumno
-                if (rowSeleccionada != -1) {
-                    int idAlumno = (int) tblalumnos.getValueAt(rowSeleccionada, 0); // Obtener el ID Alumno de la columna 0
-
-                    // Mostrar mensaje de confirmación
-                    int confirmacion = JOptionPane.showConfirmDialog(
-                            null,
-                            "¿Estás seguro de que deseas eliminar este Alumno?",
-                            "Confirmar eliminación",
-                            JOptionPane.YES_NO_OPTION
-                    );
-
-                    if (confirmacion == JOptionPane.YES_OPTION) {
-                        try {
-                            // Crear instancia para llamar el método del servicio
-                            ServiceAlumno eliminar = new ServiceAlumno();
-                            boolean exito = eliminar.eliminarAlumno(idAlumno);
-
-                            // Llamar al servicio para eliminar el alumno
-                            if (exito) {
-                                JOptionPane.showMessageDialog(null, "Alumno eliminado correctamente.");
-                                cargarAlumnosDesdeAPI();  // Recargar la tabla con los datos actualizados
-                            } else {
-                                JOptionPane.showMessageDialog(null, "No se pudo eliminar el alumno.");
-                            }
-                        } catch (Exception ex) {
-                            ex.printStackTrace();
-                            JOptionPane.showMessageDialog(null, "Error al eliminar el alumno: " + ex.getMessage());
-                        }
-                    }
-                } else {
-                    // Si no se ha seleccionado ninguna fila
-                    JOptionPane.showMessageDialog(null, "Por favor, selecciona un alumno para eliminar.");
-                }
-            }
-        });
-    }
- 
-    public JButton getbtnGuardarAlumno(){
-        return btguardarAlumnos;
-    }
-
-    public JButton getbtnModificarAlumno(){
-        return btnModificarAlumno;
-    }
-
-    public JButton getbtnEliminar(){
-        return bteliminarAlumnos;
-    }
-
-    public JButton getbtlimpiarAlumnos() {
-        return btlimpiarAlumnos;
-    }
-
-    public JTable getTblAlumno() {
-        return tblalumnos;
-    }
-
-    public JTextField getTxtIdUsuario(){
-        return txtIdAlumnos;
-    }
-
-    public JTextField getTxtNombre() {
-        return txtnombreAlumno;
-    }
-
-    public JTextField getTxtApellido() {
-        return txtapellidoAlumno;
-    }
-
-    public JTextField getTxtGrado() {
-        return txtgradoAlumno;
-    }
-
-    public JTextField getTxtGmail() {
-        return txtgmailAlumno;
-    }
-
-    public JTextField getTxtTelefono() {
-        return txtTelefono;
-    }
 
 
     @SuppressWarnings("unchecked")
@@ -396,43 +238,7 @@ initComponents();
     }//GEN-LAST:event_txtapellidoAlumnoActionPerformed
 
     private void btguardarAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btguardarAlumnosActionPerformed
-    ModeloEstudiantes estudiante = new ModeloEstudiantes();
-
-        try {
-            // Validar selección de género
-            if (!rbmasculinoAlumnos.isSelected() && !rbfemeninoAlumnos.isSelected()) {
-                JOptionPane.showMessageDialog(null, "Por favor selecciona el género del alumno");
-                return; // Salir del método si no se seleccionó género
-            }
-
-            // Obtener el género
-            String genero = rbmasculinoAlumnos.isSelected() ? "masculino" : "femenino";
-
-            // Asignar datos al modelo
-            estudiante.setIdAlumno(1); // Puedes ajustar según tu lógica
-            estudiante.setNombre(txtnombreAlumno.getText());
-            estudiante.setApellido(txtapellidoAlumno.getText());
-            estudiante.setGrado(txtgradoAlumno.getText());
-            estudiante.setGmail(txtgmailAlumno.getText());
-            estudiante.setTelefono(txtTelefono.getText());
-            estudiante.setGenero(genero);
-
-            // Llamar al servicio para guardar
-            ServiceAlumno servicio = new ServiceAlumno();
-            boolean exito = servicio.agregarAlumno(estudiante);
-
-            if (exito) {
-                JOptionPane.showMessageDialog(null, "Alumno registrado con éxito");
-                cargarAlumnosDesdeAPI(); // refresca la tabla
-                LimpiarCampos(); // Limpiar campos luego de guardar
-            } else {
-                JOptionPane.showMessageDialog(null, "Error al registrar Alumno");
-            }
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
-        }
+    
 
     }//GEN-LAST:event_btguardarAlumnosActionPerformed
 
@@ -440,37 +246,7 @@ initComponents();
 
 
     private void bteliminarAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bteliminarAlumnosActionPerformed
- int rowSeleccionada = tblalumnos.getSelectedRow();
-    
-    if (rowSeleccionada != -1) {
-        int idAlumno = (int) tblalumnos.getValueAt(rowSeleccionada, 0);  // Obtener el ID Alumno
-        
-        int confirmacion = JOptionPane.showConfirmDialog(
-            null,
-            "¿Estás seguro de que deseas eliminar este Alumno?",
-            "Confirmar eliminación",
-            JOptionPane.YES_NO_OPTION
-        );
-        
-        if (confirmacion == JOptionPane.YES_OPTION) {
-            try {
-                ServiceAlumno eliminar = new ServiceAlumno();
-                boolean exito = eliminar.eliminarAlumno(idAlumno);
-
-                if (exito) {
-                    JOptionPane.showMessageDialog(null, "Alumno eliminado correctamente.");
-                    cargarAlumnosDesdeAPI();  // Recargar la tabla con los datos actualizados
-                } else {
-                    JOptionPane.showMessageDialog(null, "No se pudo eliminar el alumno.");
-                }
-            } catch (Exception ex) {
-                ex.printStackTrace();
-                JOptionPane.showMessageDialog(null, "Error al eliminar el alumno: " + ex.getMessage());
-            }
-        }
-    } else {
-        JOptionPane.showMessageDialog(null, "Por favor, selecciona un alumno para eliminar.");
-    }
+ 
     }//GEN-LAST:event_bteliminarAlumnosActionPerformed
 
     private void btlimpiarAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btlimpiarAlumnosActionPerformed
@@ -484,15 +260,6 @@ initComponents();
 
     }//GEN-LAST:event_btnModificarAlumnoActionPerformed
 
-public void LimpiarCampos (){
-        txtnombreAlumno.setText("");
-        txtapellidoAlumno.setText("");
-        txtgmailAlumno.setText("");
-        txtgmailAlumno.setText("");
-        txtTelefono.setText("");
-    rbmasculinoAlumnos.setSelected(false);
-    rbfemeninoAlumnos.setSelected(false);
-};
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bteliminarAlumnos;
     private javax.swing.JButton btguardarAlumnos;
@@ -520,5 +287,4 @@ public void LimpiarCampos (){
 
     void setLocationRelativeTo(Object object) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-   }
+    }}
