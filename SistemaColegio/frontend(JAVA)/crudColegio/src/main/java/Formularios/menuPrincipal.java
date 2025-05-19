@@ -4,6 +4,9 @@
  */
 package Formularios;
 
+import java.awt.Color;
+
+
 
 /**
  *
@@ -15,10 +18,16 @@ public class menuPrincipal extends javax.swing.JFrame {
      * Creates new form NewJFrame
      */
     public menuPrincipal() {
+                setUndecorated(true);
         initComponents();
         setLocationRelativeTo(null);
+    btnAlumnos.setBackground(new Color(251,255,228));
     }
-
+    public static void main(String[] args) {
+        java.awt.EventQueue.invokeLater(() -> {
+            new menuPrincipal().setVisible(true);
+        });
+    }
 
 
     // Supongamos que tienes un menú con item "Asignaturas"
@@ -40,15 +49,16 @@ public class menuPrincipal extends javax.swing.JFrame {
         jPopupMenu3 = new javax.swing.JPopupMenu();
         kGradientPanel1 = new keeptoo.KGradientPanel();
         btnAsignatura = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnAlumnos = new javax.swing.JButton();
+        btnEncargados = new javax.swing.JButton();
+        btnGrado = new javax.swing.JButton();
+        btnNotas = new javax.swing.JButton();
+        btnUnidad = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         lblUsario = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
-        jButton2 = new javax.swing.JButton();
+        btnDocentes = new javax.swing.JButton();
+        btnMenu = new javax.swing.JButton();
         panelFormularios = new javax.swing.JDesktopPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -64,68 +74,99 @@ public class menuPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(144, 194, 231));
 
-        kGradientPanel1.setkEndColor(new java.awt.Color(149, 189, 253));
-        kGradientPanel1.setkStartColor(new java.awt.Color(54, 65, 86));
+        kGradientPanel1.setkEndColor(new java.awt.Color(163, 209, 198));
+        kGradientPanel1.setkStartColor(new java.awt.Color(179, 216, 168));
 
-        btnAsignatura.setBackground(new java.awt.Color(116, 147, 178));
+        btnAsignatura.setBackground(new java.awt.Color(251, 255, 228));
         btnAsignatura.setFont(new java.awt.Font("Cooper Black", 0, 14)); // NOI18N
-        btnAsignatura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/libros.png"))); // NOI18N
+        btnAsignatura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/libro-abierto.png"))); // NOI18N
         btnAsignatura.setText("ASIGNATURAS");
-        btnAsignatura.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(54, 65, 86), 2));
+        btnAsignatura.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnAsignatura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAsignaturaActionPerformed(evt);
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(116, 147, 178));
-        jButton1.setFont(new java.awt.Font("Cooper Black", 0, 14)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graduacion.png"))); // NOI18N
-        jButton1.setText("ALUMNOS");
-        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(54, 65, 86), 2));
-
-        jButton4.setBackground(new java.awt.Color(116, 147, 178));
-        jButton4.setFont(new java.awt.Font("Cooper Black", 0, 14)); // NOI18N
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/trabajo-en-equipo.png"))); // NOI18N
-        jButton4.setText("ENCARGADOS");
-        jButton4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(54, 65, 86), 2));
-
-        jButton5.setBackground(new java.awt.Color(116, 147, 178));
-        jButton5.setFont(new java.awt.Font("Cooper Black", 0, 14)); // NOI18N
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grado.png"))); // NOI18N
-        jButton5.setText("GRADO");
-        jButton5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(54, 65, 86), 2));
-
-        jButton6.setBackground(new java.awt.Color(116, 147, 178));
-        jButton6.setFont(new java.awt.Font("Cooper Black", 0, 14)); // NOI18N
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/boleta-de-calificaciones.png"))); // NOI18N
-        jButton6.setText("NOTAS");
-        jButton6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(54, 65, 86), 2));
-
-        jButton3.setBackground(new java.awt.Color(116, 147, 178));
-        jButton3.setFont(new java.awt.Font("Cooper Black", 0, 14)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medalla.png"))); // NOI18N
-        jButton3.setText("UNIDAD");
-        jButton3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(54, 65, 86), 2));
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnAlumnos.setBackground(new java.awt.Color(251, 255, 228));
+        btnAlumnos.setFont(new java.awt.Font("Cooper Black", 0, 14)); // NOI18N
+        btnAlumnos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/alumno (1).png"))); // NOI18N
+        btnAlumnos.setText("ALUMNOS");
+        btnAlumnos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnAlumnos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAlumnosMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAlumnosMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAlumnosMouseExited(evt);
+            }
+        });
+        btnAlumnos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnAlumnosActionPerformed(evt);
             }
         });
 
+        btnEncargados.setBackground(new java.awt.Color(251, 255, 228));
+        btnEncargados.setFont(new java.awt.Font("Cooper Black", 0, 14)); // NOI18N
+        btnEncargados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/padre-e-hijo.png"))); // NOI18N
+        btnEncargados.setText("ENCARGADOS");
+        btnEncargados.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        btnGrado.setBackground(new java.awt.Color(251, 255, 228));
+        btnGrado.setFont(new java.awt.Font("Cooper Black", 0, 14)); // NOI18N
+        btnGrado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grado (1).png"))); // NOI18N
+        btnGrado.setText("GRADO");
+        btnGrado.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        btnNotas.setBackground(new java.awt.Color(251, 255, 228));
+        btnNotas.setFont(new java.awt.Font("Cooper Black", 0, 14)); // NOI18N
+        btnNotas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/calificacion-de-estrellas.png"))); // NOI18N
+        btnNotas.setText("NOTAS");
+        btnNotas.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        btnUnidad.setBackground(new java.awt.Color(251, 255, 228));
+        btnUnidad.setFont(new java.awt.Font("Cooper Black", 0, 14)); // NOI18N
+        btnUnidad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medalla (1).png"))); // NOI18N
+        btnUnidad.setText("UNIDAD");
+        btnUnidad.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnUnidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUnidadActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setBackground(new java.awt.Color(0, 0, 0));
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Usuario:");
 
+        lblUsario.setBackground(new java.awt.Color(0, 0, 0));
         lblUsario.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblUsario.setForeground(new java.awt.Color(255, 255, 255));
-        lblUsario.setText("...");
+        lblUsario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblUsario.setText("......");
 
-        jButton2.setBackground(new java.awt.Color(116, 147, 178));
-        jButton2.setFont(new java.awt.Font("Cooper Black", 0, 14)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/maestro.png"))); // NOI18N
-        jButton2.setText("DOCENTES");
-        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(54, 65, 86), 2));
+        jSeparator3.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
+
+        btnDocentes.setBackground(new java.awt.Color(251, 255, 228));
+        btnDocentes.setFont(new java.awt.Font("Cooper Black", 0, 14)); // NOI18N
+        btnDocentes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/profesor-en-la-pizarra.png"))); // NOI18N
+        btnDocentes.setText("DOCENTES");
+        btnDocentes.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        btnMenu.setBackground(new java.awt.Color(251, 255, 228));
+        btnMenu.setFont(new java.awt.Font("Cooper Black", 0, 14)); // NOI18N
+        btnMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/atras.png"))); // NOI18N
+        btnMenu.setText("MENU");
+        btnMenu.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMenuActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout kGradientPanel1Layout = new javax.swing.GroupLayout(kGradientPanel1);
         kGradientPanel1.setLayout(kGradientPanel1Layout);
@@ -145,16 +186,20 @@ public class menuPrincipal extends javax.swing.JFrame {
                     .addGroup(kGradientPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnDocentes, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnAsignatura, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnUnidad, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jButton5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jButton6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnGrado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnEncargados, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnNotas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 16, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         kGradientPanel1Layout.setVerticalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,38 +213,46 @@ public class menuPrincipal extends javax.swing.JFrame {
                         .addGap(16, 16, 16)
                         .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(45, 45, 45)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnDocentes, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnAsignatura, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnEncargados, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnGrado, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnNotas, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addComponent(btnUnidad, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12))
         );
+
+        panelFormularios.setBackground(new java.awt.Color(251, 255, 228));
 
         javax.swing.GroupLayout panelFormulariosLayout = new javax.swing.GroupLayout(panelFormularios);
         panelFormularios.setLayout(panelFormulariosLayout);
         panelFormulariosLayout.setHorizontalGroup(
             panelFormulariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 693, Short.MAX_VALUE)
+            .addGap(0, 724, Short.MAX_VALUE)
         );
         panelFormulariosLayout.setVerticalGroup(
             panelFormulariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 567, Short.MAX_VALUE)
         );
 
-        jPanel1.setBackground(new java.awt.Color(54, 65, 86));
+        jPanel1.setBackground(new java.awt.Color(61, 141, 122));
 
         jLabel1.setFont(new java.awt.Font("Century Schoolbook", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("MENU PRINCIPAL COLEGIO TECH");
+
+        jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
+
+        jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/escuela.png"))); // NOI18N
 
@@ -212,7 +265,7 @@ public class menuPrincipal extends javax.swing.JFrame {
             .addComponent(jSeparator1)
             .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(88, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 694, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -273,22 +326,51 @@ public class menuPrincipal extends javax.swing.JFrame {
     asignaturas.setVisible(true); // Muestra el formulario
     }//GEN-LAST:event_btnAsignaturaActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnUnidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnidadActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnUnidadActionPerformed
+
+    private void btnAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlumnosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAlumnosActionPerformed
+
+    private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
+        // TODO add your handling code here:
+            menuPrincipal VolverMenu = new menuPrincipal();
+    panelFormularios.removeAll(); // Limpia el panel
+
+
+    VolverMenu.setVisible(true); // Muestra el formulario
+    }//GEN-LAST:event_btnMenuActionPerformed
+
+    private void btnAlumnosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlumnosMouseEntered
+        // TODO add your handling code here:
+        btnAlumnos.setBackground(new Color (245,254,193));
+    }//GEN-LAST:event_btnAlumnosMouseEntered
+
+    private void btnAlumnosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlumnosMouseExited
+        // TODO add your handling code here:
+        btnAlumnos.setBackground(new Color (251,255,228));
+    }//GEN-LAST:event_btnAlumnosMouseExited
+
+    private void btnAlumnosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlumnosMouseClicked
+        // TODO add your handling code here:
+        btnAlumnos.setBackground(new Color (255,225,142));
+    }//GEN-LAST:event_btnAlumnosMouseClicked
     /**
      * @param args the command line arguments
      */
  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAlumnos;
     private javax.swing.JButton btnAsignatura;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
+    private javax.swing.JButton btnDocentes;
+    private javax.swing.JButton btnEncargados;
+    private javax.swing.JButton btnGrado;
+    private javax.swing.JButton btnMenu;
+    private javax.swing.JButton btnNotas;
+    private javax.swing.JButton btnUnidad;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
