@@ -147,25 +147,29 @@ public class Asignatura extends javax.swing.JInternalFrame {
         setBackground(new java.awt.Color(255, 251, 222));
         setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        kGradientPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Datos de Asignatura", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
-        kGradientPanel1.setkEndColor(new java.awt.Color(163, 209, 198));
-        kGradientPanel1.setkStartColor(new java.awt.Color(179, 216, 168));
+        kGradientPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2), "Datos de Asignatura", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        kGradientPanel1.setkEndColor(new java.awt.Color(44, 47, 53));
+        kGradientPanel1.setkStartColor(new java.awt.Color(81, 89, 102));
 
         jLabel1.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Asignatura:");
 
-        txtnombre_asignatura.setBackground(new java.awt.Color(255, 251, 222));
+        txtnombre_asignatura.setBackground(new java.awt.Color(108, 119, 136));
         txtnombre_asignatura.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtnombre_asignatura.setBorder(null);
+        txtnombre_asignatura.setForeground(new java.awt.Color(255, 255, 255));
+        txtnombre_asignatura.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel2.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Descripcion:");
 
-        txtdescripcion_asignatura.setBackground(new java.awt.Color(255, 251, 222));
+        txtdescripcion_asignatura.setBackground(new java.awt.Color(108, 119, 136));
         txtdescripcion_asignatura.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtdescripcion_asignatura.setBorder(null);
+        txtdescripcion_asignatura.setForeground(new java.awt.Color(255, 255, 255));
+        txtdescripcion_asignatura.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        btnLimpiar.setBackground(new java.awt.Color(163, 209, 198));
+        btnLimpiar.setBackground(new java.awt.Color(4, 189, 125));
         btnLimpiar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/clean.png"))); // NOI18N
         btnLimpiar.setText("Limpiar Campos");
@@ -188,7 +192,7 @@ public class Asignatura extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                        .addComponent(txtid_asignatura, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtid_asignatura, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(kGradientPanel1Layout.createSequentialGroup()
                         .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -286,9 +290,9 @@ public class Asignatura extends javax.swing.JInternalFrame {
         kGradientPanel3Layout.setHorizontalGroup(
             kGradientPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(kGradientPanel3Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(19, 19, 19)
                 .addComponent(jScrollPane1)
-                .addGap(30, 30, 30))
+                .addGap(17, 17, 17))
         );
         kGradientPanel3Layout.setVerticalGroup(
             kGradientPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
