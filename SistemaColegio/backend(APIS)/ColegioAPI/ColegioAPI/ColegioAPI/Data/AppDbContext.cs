@@ -14,6 +14,6 @@ namespace ColegioAPI.Data
         public DbSet<Usuario> Usuario { get; set; } = null!;
         public DbSet<Alumnos> Alumnos { get; set; } = null!;
         public DbSet<Unidad> Unidad { get; set; } = default!;
-        public DbSet<ColegioAPI.Models.Notas> Notas { get; set; } = default!;
+        public DbSet<Notas> Notas { get; set; } = default!;
     }
 }

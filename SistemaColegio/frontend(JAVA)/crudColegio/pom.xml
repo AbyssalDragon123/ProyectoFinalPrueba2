@@ -44,7 +44,12 @@
     <artifactId>gson</artifactId>
     <version>2.10.1</version>
 </dependency>
-
+        <!-- Versión estable de JSONObject -->
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20220320</version>
+        </dependency>
         <dependency>
             <groupId>unknown.binary</groupId>
             <artifactId>KGradientPanel</artifactId>

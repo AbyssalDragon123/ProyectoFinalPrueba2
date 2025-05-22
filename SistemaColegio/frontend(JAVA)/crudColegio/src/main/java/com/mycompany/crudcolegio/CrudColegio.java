@@ -4,6 +4,9 @@
 
 package com.mycompany.crudcolegio;
 
+import Controller.LoginController;
+import View.ViewLogin;
+import Service.ServiceLogin;
 /**
  *
  * @author osbel
@@ -11,10 +14,10 @@ package com.mycompany.crudcolegio;
 public class CrudColegio {
 
     public static void main(String[] args) {
-      // Configuracion.Conexion objetoConexion = new Configuracion.Conexion();
-        //objetoConexion.estableceConexion();
+        //cargar servicios para el login
         
-        Formularios.menuPrincipal objetoMenuPrincipal = new Formularios.menuPrincipal();
-        objetoMenuPrincipal.setVisible(true);
-    }
+ViewLogin loginView = new ViewLogin();
+    ServiceLogin serviceLogin = new ServiceLogin();
+    LoginController controller = new LoginController(loginView, serviceLogin);
+}
 }

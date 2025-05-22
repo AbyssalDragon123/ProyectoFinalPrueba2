@@ -11,14 +11,12 @@ namespace ColegioAPI.Models
         public int IdGradoSeccion { get; set; }
 
         [Required]
-        [MaxLength(50)]
-        [Column("grado")]
-        public string Grado { get; set; } = string.Empty;
+        [Column("fk_id_grado")]
+        public int FkIdGrado { get; set; }
 
         [Required]
-        [MaxLength(10)]
-        [Column("seccion")]
-        public string Seccion { get; set; } = string.Empty;
+        [Column("fk_id_seccion")]
+        public int FkIdSeccion { get; set; }
     }
-}
 
+}

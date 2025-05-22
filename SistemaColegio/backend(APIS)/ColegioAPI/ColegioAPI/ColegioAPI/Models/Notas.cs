@@ -13,7 +13,7 @@ namespace ColegioAPI.Models
 
         [Required]
         [Column("nota")]
-        public decimal Nota { get; set; }
+        public decimal NotaValor { get; set; }
 
         [Required]
         [Column("descripcion")]
@@ -38,26 +38,5 @@ namespace ColegioAPI.Models
         [Required]
         [Column("fk_id_unidad")]
         public int FkIdUnidad { get; set; }
-
-        // Propiedades de navegación (relaciones)
-        [ForeignKey("FkIdAlumno")]
-        [JsonIgnore]
-        public virtual Alumnos? Alumno { get; set; } = null!;
-
-        [ForeignKey("FkIdGradoSeccion")]
-        [JsonIgnore]
-        public virtual Grado_Seccion? GradoSeccion { get; set; } = null!;
-
-        [ForeignKey("FkIdDocente")]
-        [JsonIgnore]
-        public virtual Docente? Docente { get; set; } = null!;
-
-        [ForeignKey("FkIdAsignatura")]
-        [JsonIgnore]
-        public virtual Asignatura? Asignatura { get; set; } = null!;
-
-        [ForeignKey("FkIdUnidad")]
-        [JsonIgnore]
-        public virtual Unidad? Unidad { get; set; } = null!;
     }
 }

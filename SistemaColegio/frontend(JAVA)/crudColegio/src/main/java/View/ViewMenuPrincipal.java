@@ -2,10 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Formularios;
+package View;
 
 import Configuracion.UrlOpener;
+import Controller.LoginController;
+import View.ViewLogin;
+import Service.ServiceLogin;
+import Modelos.SesionUsuario;
 import java.awt.Color;
+import java.awt.PopupMenu;
+import java.awt.event.ActionListener;
 
 
 
@@ -14,23 +20,40 @@ import java.awt.Color;
  *
  * @author osbel
  */
-public class menuPrincipal extends javax.swing.JFrame {
+public class ViewMenuPrincipal extends javax.swing.JFrame {
 
     /**
      * Creates new form NewJFrame
      */
-    public menuPrincipal() {
+    public ViewMenuPrincipal() {
                 setUndecorated(true);
         initComponents();
         setLocationRelativeTo(null);
-    btnAlumnos.setBackground(new Color(251,255,228));
+  
     }
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(() -> {
-            new menuPrincipal().setVisible(true);
+            new ViewMenuPrincipal().setVisible(true);
         });
     }
+    public void configurarCerrarSesion(ActionListener listener) {
+    btnCerrarSesion.addActionListener(listener);
+}
+private void mostrarContenidoInicial() {
+panelFormularios.removeAll();
 
+    // Vuelve a agregar los componentes de bienvenida
+    panelFormularios.add(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
+    panelFormularios.add(jLabel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+    panelFormularios.add(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+    panelFormularios.add(btnWhatsapp, javax.swing.JLayeredPane.DEFAULT_LAYER);
+    panelFormularios.add(btnFacebook, javax.swing.JLayeredPane.DEFAULT_LAYER);
+    panelFormularios.add(btnInstagram, javax.swing.JLayeredPane.DEFAULT_LAYER);
+    panelFormularios.add(btnInstagram1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+    panelFormularios.repaint();
+    panelFormularios.revalidate();
+    }
 
     // Supongamos que tienes un menú con item "Asignaturas"
     private void menuAsignaturaActionPerformed(java.awt.event.ActionEvent evt) {
@@ -60,7 +83,9 @@ public class menuPrincipal extends javax.swing.JFrame {
         lblUsario = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
         btnDocentes = new javax.swing.JButton();
+        btnUnidad1 = new javax.swing.JButton();
         btnMenu = new javax.swing.JButton();
+        btnCerrarSesion = new javax.swing.JButton();
         panelFormularios = new javax.swing.JDesktopPane();
         jLabel7 = new javax.swing.JLabel();
         btnWhatsapp = new javax.swing.JLabel();
@@ -83,25 +108,27 @@ public class menuPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(144, 194, 231));
 
-        kGradientPanel1.setkEndColor(new java.awt.Color(163, 209, 198));
-        kGradientPanel1.setkStartColor(new java.awt.Color(179, 216, 168));
+        kGradientPanel1.setkEndColor(new java.awt.Color(44, 47, 53));
+        kGradientPanel1.setkStartColor(new java.awt.Color(78, 84, 94));
 
-        btnAsignatura.setBackground(new java.awt.Color(251, 255, 228));
+        btnAsignatura.setBackground(new java.awt.Color(4, 189, 125));
         btnAsignatura.setFont(new java.awt.Font("Cooper Black", 0, 14)); // NOI18N
         btnAsignatura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/libro-abierto.png"))); // NOI18N
         btnAsignatura.setText("ASIGNATURAS");
         btnAsignatura.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnAsignatura.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnAsignatura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAsignaturaActionPerformed(evt);
             }
         });
 
-        btnAlumnos.setBackground(new java.awt.Color(251, 255, 228));
+        btnAlumnos.setBackground(new java.awt.Color(4, 189, 125));
         btnAlumnos.setFont(new java.awt.Font("Cooper Black", 0, 14)); // NOI18N
         btnAlumnos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/alumno (1).png"))); // NOI18N
         btnAlumnos.setText("ALUMNOS");
         btnAlumnos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnAlumnos.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnAlumnos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnAlumnosMouseClicked(evt);
@@ -119,29 +146,33 @@ public class menuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        btnEncargados.setBackground(new java.awt.Color(251, 255, 228));
+        btnEncargados.setBackground(new java.awt.Color(4, 189, 125));
         btnEncargados.setFont(new java.awt.Font("Cooper Black", 0, 14)); // NOI18N
         btnEncargados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/padre-e-hijo.png"))); // NOI18N
         btnEncargados.setText("ENCARGADOS");
         btnEncargados.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnEncargados.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
-        btnGrado.setBackground(new java.awt.Color(251, 255, 228));
+        btnGrado.setBackground(new java.awt.Color(4, 189, 125));
         btnGrado.setFont(new java.awt.Font("Cooper Black", 0, 14)); // NOI18N
         btnGrado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grado (1).png"))); // NOI18N
         btnGrado.setText("GRADO");
         btnGrado.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnGrado.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
-        btnNotas.setBackground(new java.awt.Color(251, 255, 228));
+        btnNotas.setBackground(new java.awt.Color(4, 189, 125));
         btnNotas.setFont(new java.awt.Font("Cooper Black", 0, 14)); // NOI18N
         btnNotas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/calificacion-de-estrellas.png"))); // NOI18N
         btnNotas.setText("NOTAS");
         btnNotas.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnNotas.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
-        btnUnidad.setBackground(new java.awt.Color(251, 255, 228));
+        btnUnidad.setBackground(new java.awt.Color(4, 189, 125));
         btnUnidad.setFont(new java.awt.Font("Cooper Black", 0, 14)); // NOI18N
         btnUnidad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medalla (1).png"))); // NOI18N
         btnUnidad.setText("UNIDAD");
         btnUnidad.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnUnidad.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnUnidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUnidadActionPerformed(evt);
@@ -150,30 +181,54 @@ public class menuPrincipal extends javax.swing.JFrame {
 
         jLabel4.setBackground(new java.awt.Color(0, 0, 0));
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Usuario:");
 
         lblUsario.setBackground(new java.awt.Color(0, 0, 0));
         lblUsario.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblUsario.setForeground(new java.awt.Color(255, 255, 255));
         lblUsario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblUsario.setText("......");
 
         jSeparator3.setBackground(new java.awt.Color(0, 0, 0));
-        jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
+        jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
 
-        btnDocentes.setBackground(new java.awt.Color(251, 255, 228));
+        btnDocentes.setBackground(new java.awt.Color(4, 189, 125));
         btnDocentes.setFont(new java.awt.Font("Cooper Black", 0, 14)); // NOI18N
         btnDocentes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/profesor-en-la-pizarra.png"))); // NOI18N
         btnDocentes.setText("DOCENTES");
         btnDocentes.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnDocentes.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
-        btnMenu.setBackground(new java.awt.Color(251, 255, 228));
+        btnUnidad1.setBackground(new java.awt.Color(4, 189, 125));
+        btnUnidad1.setFont(new java.awt.Font("Cooper Black", 0, 14)); // NOI18N
+        btnUnidad1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medalla (1).png"))); // NOI18N
+        btnUnidad1.setText("USUARIOS");
+        btnUnidad1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnUnidad1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnUnidad1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUnidad1ActionPerformed(evt);
+            }
+        });
+
+        btnMenu.setBackground(new java.awt.Color(4, 189, 125));
         btnMenu.setFont(new java.awt.Font("Cooper Black", 0, 14)); // NOI18N
-        btnMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/atras.png"))); // NOI18N
-        btnMenu.setText("MENU");
+        btnMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/casa (2).png"))); // NOI18N
         btnMenu.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMenuActionPerformed(evt);
+            }
+        });
+
+        btnCerrarSesion.setBackground(new java.awt.Color(4, 189, 125));
+        btnCerrarSesion.setFont(new java.awt.Font("Cooper Black", 0, 14)); // NOI18N
+        btnCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cerrar-sesion (2).png"))); // NOI18N
+        btnCerrarSesion.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarSesionActionPerformed(evt);
             }
         });
 
@@ -193,22 +248,24 @@ public class menuPrincipal extends javax.swing.JFrame {
                                 .addComponent(lblUsario, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnDocentes, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnAsignatura, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnUnidad, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(btnEncargados, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnAsignatura, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                                .addComponent(btnDocentes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnAlumnos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnGrado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnEncargados, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnNotas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(btnAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 16, Short.MAX_VALUE)))
+                                .addComponent(btnNotas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnUnidad, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnUnidad1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                                .addGap(28, 28, 28)
+                                .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(12, 12, 12)))
                 .addContainerGap())
-            .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                .addGap(52, 52, 52)
-                .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         kGradientPanel1Layout.setVerticalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,7 +278,7 @@ public class menuPrincipal extends javax.swing.JFrame {
                     .addGroup(kGradientPanel1Layout.createSequentialGroup()
                         .addGap(16, 16, 16)
                         .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(45, 45, 45)
+                .addGap(18, 18, 18)
                 .addComponent(btnAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnDocentes, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -235,18 +292,22 @@ public class menuPrincipal extends javax.swing.JFrame {
                 .addComponent(btnNotas, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnUnidad, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addComponent(btnUnidad1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(43, 43, 43))
         );
 
-        panelFormularios.setBackground(new java.awt.Color(251, 255, 228));
+        panelFormularios.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel7.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel7.setText("<html><p><h1><center>¡Bienvenidos a LCT!</h1></center>\n"
             +"<p> <center>Nos alegra recibirlos en esta gran familia, donde cada día es una oportunidad para aprender, crecer y dejar huella. Aquí cultivamos un ambiente de confianza y entusiasmo para que cada estudiante descubra y potencie su mejor versión.</center>\n"
-            + "<h2><p>Nuestros Valores \n</h2>"
+            + "<h2>Nuestros Valores</h2>"
             + "<p> 1. Integridad Actuamos: siempre con honestidad y responsabilidad."
             + "<p> 2.  Excelencia Académica: Nos esforzamos por superar nuestras metas y desarrollar el pensamiento crítico. "
             + "<p> 3. Respeto: Valoramos la diversidad y tratamos a todos con dignidad.\n" +
@@ -289,14 +350,14 @@ public class menuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("¿Quieres saber más sobre nosotros?");
 
-        jLabel5.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(61, 141, 122));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Síguenos en nuestras redes sociales.");
+        jLabel5.setText("¡Síguenos en nuestras redes sociales!");
 
         btnInstagram1.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         btnInstagram1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -323,45 +384,46 @@ public class menuPrincipal extends javax.swing.JFrame {
         panelFormulariosLayout.setHorizontalGroup(
             panelFormulariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelFormulariosLayout.createSequentialGroup()
-                .addGap(40, 40, 40)
+                .addGap(26, 26, 26)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 678, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(panelFormulariosLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(panelFormulariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelFormulariosLayout.createSequentialGroup()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(btnWhatsapp, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnFacebook, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(48, 48, 48))
+                        .addComponent(btnInstagram1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnInstagram, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(26, Short.MAX_VALUE))
                     .addGroup(panelFormulariosLayout.createSequentialGroup()
-                        .addGroup(panelFormulariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelFormulariosLayout.createSequentialGroup()
-                                .addComponent(btnWhatsapp, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnFacebook, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnInstagram1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnInstagram, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 678, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(40, Short.MAX_VALUE))))
+                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         panelFormulariosLayout.setVerticalGroup(
             panelFormulariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelFormulariosLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(panelFormulariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
                 .addGroup(panelFormulariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnWhatsapp)
                     .addComponent(btnInstagram)
                     .addComponent(btnFacebook)
                     .addComponent(btnInstagram1))
-                .addGap(32, 32, 32))
+                .addContainerGap())
         );
 
-        jPanel1.setBackground(new java.awt.Color(61, 141, 122));
+        jPanel1.setBackground(new java.awt.Color(44, 47, 53));
 
         jLabel1.setFont(new java.awt.Font("Century Schoolbook", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -461,14 +523,24 @@ public class menuPrincipal extends javax.swing.JFrame {
     alumno.setVisible(true); // Muestra el formulario
     }//GEN-LAST:event_btnAlumnosActionPerformed
 
-    private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
-        // TODO add your handling code here:
-            menuPrincipal VolverMenu = new menuPrincipal();
-    panelFormularios.removeAll(); // Limpia el panel
-
-
-    VolverMenu.setVisible(true); // Muestra el formulario
-    }//GEN-LAST:event_btnMenuActionPerformed
+    private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
+// Limpiar la sesión (si estás usando SesionUsuario)
+    try {
+        // Si tienes una clase SesionUsuario, limpia sus datos
+        Modelos.SesionUsuario.nombreUsuario = null;
+        // Puedes limpiar otros datos de sesión si los tienes
+    } catch (Exception e) {
+        // Si hay algún error al limpiar la sesión, simplemente continúa
+    }
+    
+    // Cerrar la ventana actual
+    this.dispose(); 
+    
+    // Crear un nuevo login y su controlador
+    ViewLogin nuevoLogin = new ViewLogin();
+    ServiceLogin nuevoServicio = new ServiceLogin();
+    new Controller.LoginController(nuevoLogin, nuevoServicio);
+    }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
     private void btnAlumnosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlumnosMouseEntered
         // TODO add your handling code here:
@@ -503,6 +575,17 @@ public class menuPrincipal extends javax.swing.JFrame {
     private void btnInstagram1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInstagram1MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_btnInstagram1MouseClicked
+
+    private void btnUnidad1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnidad1ActionPerformed
+        // TODO add your handling code here:
+
+this.setVisible(false); // Opcional
+    }//GEN-LAST:event_btnUnidad1ActionPerformed
+
+    private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
+        // TODO add your handling code here:
+ mostrarContenidoInicial();
+    }//GEN-LAST:event_btnMenuActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -511,6 +594,7 @@ public class menuPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlumnos;
     private javax.swing.JButton btnAsignatura;
+    private javax.swing.JButton btnCerrarSesion;
     private javax.swing.JButton btnDocentes;
     private javax.swing.JButton btnEncargados;
     private javax.swing.JLabel btnFacebook;
@@ -520,6 +604,7 @@ public class menuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnMenu;
     private javax.swing.JButton btnNotas;
     private javax.swing.JButton btnUnidad;
+    private javax.swing.JButton btnUnidad1;
     private javax.swing.JLabel btnWhatsapp;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -541,4 +626,8 @@ public class menuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lblUsario;
     private javax.swing.JDesktopPane panelFormularios;
     // End of variables declaration//GEN-END:variables
+
+    public Object getBtnCerrarSesion() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

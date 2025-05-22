@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ColegioAPI.Data;
 using ColegioAPI.Models;
+using ColegioAPI.DTOs;
 
 namespace ColegioAPI.Controllers
 {
@@ -83,7 +84,29 @@ namespace ColegioAPI.Controllers
 
             return CreatedAtAction("GetUsuario", new { id = usuario.IdUsuario }, usuario);
         }
+        //recuperar contraseña
+        [HttpPut("RecuperarContrasena")]
+        public async Task<IActionResult> RecuperarContrasena([FromBody] RecuperarContrasenaDto data)
+        {
+            var usuario = await _context.Usuario.FirstOrDefaultAsync(u => u.Username == data.Username);
 
+            if (usuario == null)
+            {
+                return NotFound(new { mensaje = "Usuario no encontrado" });
+            }
+
+            usuario.Pass = data.NuevaContrasena;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+                return Ok(new { mensaje = "Contraseña actualizada" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { mensaje = "Error al actualizar", detalle = ex.Message });
+            }
+        }
         // DELETE: api/Usuario/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUsuario(int id)

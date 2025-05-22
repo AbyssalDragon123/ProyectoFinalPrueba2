@@ -11,6 +11,15 @@ namespace ColegioAPI.Models
         public int IdUsuario { get; set; }
 
         [Required]
+        [MaxLength(45)]
+        [Column("nombre")]
+        public string Nombre { get; set; } = string.Empty;
+
+        [Required]
+        [MaxLength(45)]
+        [Column("apellido")]
+        public string Apellido { get; set; } = string.Empty;
+        [Required]
         [Column("username")]
         [MaxLength(50)]
         public string Username { get; set; } = null!;
@@ -20,9 +29,9 @@ namespace ColegioAPI.Models
         [MaxLength(255)]
         public string Pass { get; set; } = null!;
 
-        [Column("email")]
+        [Column("correo")]
         [MaxLength(100)]
-        public string? Email { get; set; }
+        public string? Correo { get; set; }
 
         [Required]
         [Column("rol")]
