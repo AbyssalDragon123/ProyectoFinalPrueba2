@@ -10,7 +10,7 @@ namespace ColegioAPI.Data
         public DbSet<Asignatura> Asignatura { get; set; } = null!;
         public DbSet<Docente> Docente { get; set; } = null!;
         public DbSet<Encargado> Encargado { get; set; } = null!;
-        public DbSet<Grado_Seccion> Grados_Seccion { get; set; } = null!;
+        public DbSet<Aula> Grados_Seccion { get; set; } = null!;
         public DbSet<Usuario> Usuario { get; set; } = null!;
         public DbSet<Alumnos> Alumnos { get; set; } = null!;
         public DbSet<Unidad> Unidad { get; set; } = default!;

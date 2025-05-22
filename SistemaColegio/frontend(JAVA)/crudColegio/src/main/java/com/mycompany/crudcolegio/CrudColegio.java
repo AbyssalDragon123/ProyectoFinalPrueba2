@@ -16,7 +16,7 @@ public class CrudColegio {
     public static void main(String[] args) {
         //cargar servicios para el login
         
-ViewLogin loginView = new ViewLogin();
+    ViewLogin loginView = new ViewLogin();
     ServiceLogin serviceLogin = new ServiceLogin();
     LoginController controller = new LoginController(loginView, serviceLogin);
 }

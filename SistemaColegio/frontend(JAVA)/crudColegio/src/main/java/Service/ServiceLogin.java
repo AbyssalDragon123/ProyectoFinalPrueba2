@@ -1,9 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Service;
 import Modelos.ModeloLogin;
+import Modelos.SesionUsuario; // Importa la clase SesionUsuario
 import javax.swing.*;
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -14,7 +11,7 @@ import org.json.JSONObject;
  * @author Admin
  */
 public class ServiceLogin {
-public static ModeloLogin autenticar(String username, String password) {
+    public static ModeloLogin autenticar(String username, String password) {
         try {
             URL url = new URL("http://localhost:5148/api/Login/login"); //Endpoint
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -47,7 +44,16 @@ public static ModeloLogin autenticar(String username, String password) {
                 login.setUserName(json.getString("username"));
                 login.setRol(String.valueOf(json.get("rol"))); // Convertimos el enum a string (si es necesario)
                 
-                System.out.println("Usuario autenticado: " + username + "Rol" + password);
+                // Guardar datos en la sesión
+                SesionUsuario.nombreUsuario = login.getUserName();
+                SesionUsuario.rol = login.getRol();
+                
+                // Si tu API devuelve el ID, también guárdalo
+                if (json.has("idUsuario")) {
+                    SesionUsuario.idUsuario = json.getInt("idUsuario");
+                }
+                
+                System.out.println("Usuario autenticado: " + username + " Rol: " + login.getRol());
 
                 return login;
                 

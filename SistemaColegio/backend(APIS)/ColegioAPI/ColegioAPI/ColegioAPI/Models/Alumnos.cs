@@ -32,9 +32,6 @@ public class Alumnos
     public Encargado Encargado { get; set; } = null!;
 
     [Required]
-    [Column("fk_id_grado_seccion")]
-    public int FkIdGradoSeccion { get; set; }
-
-    [ForeignKey("FkIdGradoSeccion")]
-    public Grado_Seccion GradoSeccion { get; set; } = null!;
+    [Column("fk_id_aula")]
+    public int FkIdAula { get; set; }
 }

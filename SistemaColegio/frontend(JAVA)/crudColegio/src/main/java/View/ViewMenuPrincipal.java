@@ -497,16 +497,63 @@ panelFormularios.removeAll();
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAsignaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignaturaActionPerformed
-    Asignatura asignaturas = new Asignatura();
+    private void btnInstagram1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInstagram1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnInstagram1MouseClicked
 
-    panelFormularios.removeAll(); // Limpia el panel
-    panelFormularios.add(asignaturas); // Agrega el formulario
-    panelFormularios.repaint(); // Refresca
-    panelFormularios.revalidate();
+    private void btnFacebookMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFacebookMouseClicked
+        // TODO add your handling code here:
+        UrlOpener.openUrl("https://www.facebook.com/profile.php?id=61576630377327", this);
+    }//GEN-LAST:event_btnFacebookMouseClicked
 
-    asignaturas.setVisible(true); // Muestra el formulario
-    }//GEN-LAST:event_btnAsignaturaActionPerformed
+    private void btnInstagramMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInstagramMouseClicked
+        // TODO add your handling code here:
+        UrlOpener.openUrl("https://www.tiktok.com/@colegio_lct?is_from_webapp=1&sender_device=pc", this);
+    }//GEN-LAST:event_btnInstagramMouseClicked
+
+    private void btnWhatsappMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnWhatsappMouseClicked
+        // TODO add your handling code here:
+        UrlOpener.openUrl("https://whatsapp.com/channel/0029VbAj1wpDJ6H9jca6Ed1K", this);
+    }//GEN-LAST:event_btnWhatsappMouseClicked
+
+    private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
+        // Limpiar la sesión (si estás usando SesionUsuario)
+        try {
+            // Si tienes una clase SesionUsuario, limpia sus datos
+            Modelos.SesionUsuario.nombreUsuario = null;
+            // Puedes limpiar otros datos de sesión si los tienes
+        } catch (Exception e) {
+            // Si hay algún error al limpiar la sesión, simplemente continúa
+        }
+
+        // Cerrar la ventana actual
+        this.dispose();
+
+        // Crear un nuevo login y su controlador
+        ViewLogin nuevoLogin = new ViewLogin();
+        ServiceLogin nuevoServicio = new ServiceLogin();
+        new Controller.LoginController(nuevoLogin, nuevoServicio);
+    }//GEN-LAST:event_btnCerrarSesionActionPerformed
+
+    private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
+        // TODO add your handling code here:
+        mostrarContenidoInicial();
+    }//GEN-LAST:event_btnMenuActionPerformed
+
+    private void btnUnidad1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnidad1ActionPerformed
+
+        ViewUsuariosCRUD usuariocrud = new ViewUsuariosCRUD();
+
+        usuariocrud.putClientProperty("JInternalFrame.isPalette", Boolean.TRUE);
+        ((javax.swing.plaf.basic.BasicInternalFrameUI) usuariocrud.getUI()).setNorthPane(null);
+
+        panelFormularios.removeAll(); // Limpia el panel
+        panelFormularios.add(usuariocrud); // Agrega el formulario
+        panelFormularios.repaint(); // Refresca
+        panelFormularios.revalidate();
+
+        usuariocrud.setVisible(true); // Muestra el formulario
+    }//GEN-LAST:event_btnUnidad1ActionPerformed
 
     private void btnUnidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnidadActionPerformed
         // TODO add your handling code here:
@@ -514,78 +561,43 @@ panelFormularios.removeAll();
 
     private void btnAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlumnosActionPerformed
         // TODO add your handling code here:
-    Alumno alumno = new Alumno();
+        Alumno alumno = new Alumno();
 
-    panelFormularios.removeAll(); // Limpia el panel
-    panelFormularios.add(alumno); // Agrega el formulario
-    panelFormularios.repaint(); // Refresca
-    panelFormularios.revalidate();
-    alumno.setVisible(true); // Muestra el formulario
+        panelFormularios.removeAll(); // Limpia el panel
+        panelFormularios.add(alumno); // Agrega el formulario
+        panelFormularios.repaint(); // Refresca
+        panelFormularios.revalidate();
+        alumno.setVisible(true); // Muestra el formulario
     }//GEN-LAST:event_btnAlumnosActionPerformed
-
-    private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
-// Limpiar la sesión (si estás usando SesionUsuario)
-    try {
-        // Si tienes una clase SesionUsuario, limpia sus datos
-        Modelos.SesionUsuario.nombreUsuario = null;
-        // Puedes limpiar otros datos de sesión si los tienes
-    } catch (Exception e) {
-        // Si hay algún error al limpiar la sesión, simplemente continúa
-    }
-    
-    // Cerrar la ventana actual
-    this.dispose(); 
-    
-    // Crear un nuevo login y su controlador
-    ViewLogin nuevoLogin = new ViewLogin();
-    ServiceLogin nuevoServicio = new ServiceLogin();
-    new Controller.LoginController(nuevoLogin, nuevoServicio);
-    }//GEN-LAST:event_btnCerrarSesionActionPerformed
-
-    private void btnAlumnosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlumnosMouseEntered
-        // TODO add your handling code here:
-        btnAlumnos.setBackground(new Color (245,254,193));
-    }//GEN-LAST:event_btnAlumnosMouseEntered
 
     private void btnAlumnosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlumnosMouseExited
         // TODO add your handling code here:
         btnAlumnos.setBackground(new Color (251,255,228));
     }//GEN-LAST:event_btnAlumnosMouseExited
 
+    private void btnAlumnosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlumnosMouseEntered
+        // TODO add your handling code here:
+        btnAlumnos.setBackground(new Color (245,254,193));
+    }//GEN-LAST:event_btnAlumnosMouseEntered
+
     private void btnAlumnosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlumnosMouseClicked
         // TODO add your handling code here:
         btnAlumnos.setBackground(new Color (255,225,142));
     }//GEN-LAST:event_btnAlumnosMouseClicked
 
-    private void btnWhatsappMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnWhatsappMouseClicked
-        // TODO add your handling code here:
-        UrlOpener.openUrl("https://whatsapp.com/channel/0029VbAj1wpDJ6H9jca6Ed1K", this);
-    }//GEN-LAST:event_btnWhatsappMouseClicked
+    private void btnAsignaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignaturaActionPerformed
+        // Ocultar la barra de título (agregar estas líneas)
+        Asignatura asignaturas = new Asignatura();
+        asignaturas.putClientProperty("JInternalFrame.isPalette", Boolean.TRUE);
+        ((javax.swing.plaf.basic.BasicInternalFrameUI) asignaturas.getUI()).setNorthPane(null);
 
-    private void btnFacebookMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFacebookMouseClicked
-        // TODO add your handling code here:
-     UrlOpener.openUrl("https://www.facebook.com/profile.php?id=61576630377327", this);
-    }//GEN-LAST:event_btnFacebookMouseClicked
+        panelFormularios.removeAll(); // Limpia el panel
+        panelFormularios.add(asignaturas); // Agrega el formulario
+        panelFormularios.repaint(); // Refresca
+        panelFormularios.revalidate();
 
-    private void btnInstagramMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInstagramMouseClicked
-        // TODO add your handling code here:
-    UrlOpener.openUrl("https://www.tiktok.com/@colegio_lct?is_from_webapp=1&sender_device=pc", this);
-    }//GEN-LAST:event_btnInstagramMouseClicked
-
-    private void btnInstagram1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInstagram1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnInstagram1MouseClicked
-
-    private void btnUnidad1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnidad1ActionPerformed
-        // TODO add your handling code here:
-
-this.setVisible(false); // Opcional
-    }//GEN-LAST:event_btnUnidad1ActionPerformed
-
-    private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
-        // TODO add your handling code here:
- mostrarContenidoInicial();
-    }//GEN-LAST:event_btnMenuActionPerformed
+        asignaturas.setVisible(true); // Muestra el formulario
+    }//GEN-LAST:event_btnAsignaturaActionPerformed
     /**
      * @param args the command line arguments
      */

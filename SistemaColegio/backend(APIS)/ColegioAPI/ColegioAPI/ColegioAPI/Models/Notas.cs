@@ -24,8 +24,8 @@ namespace ColegioAPI.Models
         public int FkIdAlumno { get; set; }
 
         [Required]
-        [Column("fk_id_grado_seccion")]
-        public int FkIdGradoSeccion { get; set; }
+        [Column("fk_id_aula")]
+        public int FkIdAula { get; set; }
 
         [Required]
         [Column("fk_id_docente")]

@@ -12,47 +12,47 @@ namespace ColegioAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class Grado_SeccionController : ControllerBase
+    public class AulasController : ControllerBase
     {
         private readonly AppDbContext _context;
 
-        public Grado_SeccionController(AppDbContext context)
+        public AulasController(AppDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Grado_Seccion
+        // GET: api/Aulas
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Grado_Seccion>>> GetGradosSecciones()
+        public async Task<ActionResult<IEnumerable<Aula>>> GetGrados_Seccion()
         {
             return await _context.Grados_Seccion.ToListAsync();
         }
 
-        // GET: api/Grado_Seccion/5
+        // GET: api/Aulas/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Grado_Seccion>> GetGrado_Seccion(int id)
+        public async Task<ActionResult<Aula>> GetAula(int id)
         {
-            var grado_Seccion = await _context.Grados_Seccion.FindAsync(id);
+            var aula = await _context.Grados_Seccion.FindAsync(id);
 
-            if (grado_Seccion == null)
+            if (aula == null)
             {
                 return NotFound();
             }
 
-            return grado_Seccion;
+            return aula;
         }
 
-        // PUT: api/Grado_Seccion/5
+        // PUT: api/Aulas/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutGrado_Seccion(int id, Grado_Seccion grado_Seccion)
+        public async Task<IActionResult> PutAula(int id, Aula aula)
         {
-            if (id != grado_Seccion.IdGradoSeccion)
+            if (id != aula.IdAula)
             {
                 return BadRequest();
             }
 
-            _context.Entry(grado_Seccion).State = EntityState.Modified;
+            _context.Entry(aula).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +60,7 @@ namespace ColegioAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!Grado_SeccionExists(id))
+                if (!AulaExists(id))
                 {
                     return NotFound();
                 }
@@ -73,36 +73,36 @@ namespace ColegioAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Grado_Seccion
+        // POST: api/Aulas
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Grado_Seccion>> PostGrado_Seccion(Grado_Seccion grado_Seccion)
+        public async Task<ActionResult<Aula>> PostAula(Aula aula)
         {
-            _context.Grados_Seccion.Add(grado_Seccion);
+            _context.Grados_Seccion.Add(aula);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetGrado_Seccion", new { id = grado_Seccion.IdGradoSeccion }, grado_Seccion);
+            return CreatedAtAction("GetAula", new { id = aula.IdAula }, aula);
         }
 
-        // DELETE: api/Grado_Seccion/5
+        // DELETE: api/Aulas/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteGrado_Seccion(int id)
+        public async Task<IActionResult> DeleteAula(int id)
         {
-            var grado_Seccion = await _context.Grados_Seccion.FindAsync(id);
-            if (grado_Seccion == null)
+            var aula = await _context.Grados_Seccion.FindAsync(id);
+            if (aula == null)
             {
                 return NotFound();
             }
 
-            _context.Grados_Seccion.Remove(grado_Seccion);
+            _context.Grados_Seccion.Remove(aula);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool Grado_SeccionExists(int id)
+        private bool AulaExists(int id)
         {
-            return _context.Grados_Seccion.Any(e => e.IdGradoSeccion == id);
+            return _context.Grados_Seccion.Any(e => e.IdAula == id);
         }
     }
 }

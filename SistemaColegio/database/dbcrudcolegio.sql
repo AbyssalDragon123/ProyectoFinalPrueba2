@@ -5,11 +5,11 @@ USE dbcrudcolegio;
 -- Tabla usuario
 CREATE TABLE IF NOT EXISTS usuario (
     id_usuario INT AUTO_INCREMENT PRIMARY KEY,
-    nombre varchar(50) not null,
-    apellido varchar(50) not null,
+    nombre VARCHAR(50) NOT NULL,
+    apellido VARCHAR(50) NOT NULL,
     username VARCHAR(50) NOT NULL UNIQUE,
     pass VARCHAR(255) NOT NULL,
-    email VARCHAR(100) UNIQUE,
+    correo VARCHAR(100) UNIQUE,
     rol ENUM('docente', 'admin') DEFAULT 'docente'
 );
 
@@ -21,29 +21,14 @@ CREATE TABLE IF NOT EXISTS encargado (
     correo_encargado VARCHAR(100) NOT NULL,
     telefono_encargado VARCHAR(20) NOT NULL,
     direccion_encargado VARCHAR(50) NOT NULL,
-    dpi_encargado VARCHAR(20) NOT NULL
+    dpi_encargado VARCHAR(20) NOT NULL UNIQUE
 );
 
--- Tabla grado
-CREATE TABLE IF NOT EXISTS grado (
-    id_grado INT AUTO_INCREMENT PRIMARY KEY,
-    nombre_grado VARCHAR(50) NOT NULL
-);
-
--- Tabla seccion
-CREATE TABLE IF NOT EXISTS seccion (
-    id_seccion INT AUTO_INCREMENT PRIMARY KEY,
-    nombre_seccion VARCHAR(10) NOT NULL
-);
-
--- Tabla grado_seccion como tabla intermedia
-CREATE TABLE IF NOT EXISTS grado_seccion (
-    id_grado_seccion INT AUTO_INCREMENT PRIMARY KEY,
-    fk_id_grado INT NOT NULL,
-    fk_id_seccion INT NOT NULL,
-    UNIQUE(fk_id_grado, fk_id_seccion),
-    FOREIGN KEY (fk_id_grado) REFERENCES grado(id_grado) ON DELETE CASCADE,
-    FOREIGN KEY (fk_id_seccion) REFERENCES seccion(id_seccion) ON DELETE CASCADE
+-- Tabla aula
+CREATE TABLE IF NOT EXISTS aula (
+    id_aula INT AUTO_INCREMENT PRIMARY KEY,
+    grado VARCHAR(50) NOT NULL,
+    seccion VARCHAR(50) NOT NULL
 );
 
 -- Tabla alumno
@@ -53,9 +38,9 @@ CREATE TABLE IF NOT EXISTS alumno (
     apellido_alumno VARCHAR(50) NOT NULL,
     genero_alumno VARCHAR(10) NOT NULL,
     fk_id_encargado INT NOT NULL,
-    fk_id_grado_seccion INT NOT NULL,
+    fk_id_aula INT NOT NULL,
     FOREIGN KEY (fk_id_encargado) REFERENCES encargado(id_encargado) ON DELETE CASCADE,
-    FOREIGN KEY (fk_id_grado_seccion) REFERENCES grado_seccion(id_grado_seccion) ON DELETE CASCADE
+    FOREIGN KEY (fk_id_aula) REFERENCES aula(id_aula) ON DELETE CASCADE
 );
 
 -- Tabla docente
@@ -78,7 +63,7 @@ CREATE TABLE IF NOT EXISTS asignatura (
     FOREIGN KEY (fk_id_docente) REFERENCES docente(id_docente) ON DELETE CASCADE
 );
 
--- Tabla unidad (ahora relacionada con asignatura)
+-- Tabla unidad
 CREATE TABLE IF NOT EXISTS unidad (
     id_unidad INT AUTO_INCREMENT PRIMARY KEY,
     nombre_unidad VARCHAR(100) NOT NULL,
@@ -91,9 +76,9 @@ CREATE TABLE IF NOT EXISTS unidad (
 CREATE TABLE IF NOT EXISTS notas (
     id_notas INT AUTO_INCREMENT PRIMARY KEY,
     nota DECIMAL(5,2) NOT NULL,
-    descripcion TEXT NOT NULL,
+    descripcion TEXT,
     fk_id_alumno INT NOT NULL,
-    fk_id_grado_seccion INT NOT NULL,
+    fk_id_aula INT NOT NULL,
     fk_id_docente INT NOT NULL,
     fk_id_asignatura INT NOT NULL,
     fk_id_unidad INT NOT NULL,
@@ -101,5 +86,5 @@ CREATE TABLE IF NOT EXISTS notas (
     FOREIGN KEY (fk_id_asignatura) REFERENCES asignatura(id_asignatura) ON DELETE CASCADE,
     FOREIGN KEY (fk_id_unidad) REFERENCES unidad(id_unidad) ON DELETE CASCADE,
     FOREIGN KEY (fk_id_alumno) REFERENCES alumno(id_alumno) ON DELETE CASCADE,
-    FOREIGN KEY (fk_id_grado_seccion) REFERENCES grado_seccion(id_grado_seccion) ON DELETE CASCADE
+    FOREIGN KEY (fk_id_aula) REFERENCES aula(id_aula) ON DELETE CASCADE
 );
