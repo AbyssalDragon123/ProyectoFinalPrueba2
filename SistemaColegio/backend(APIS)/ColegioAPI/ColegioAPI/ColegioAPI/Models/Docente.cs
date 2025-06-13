@@ -34,10 +34,8 @@ namespace ColegioAPI.Models
         public string TelefonoDocente { get; set; } = string.Empty;
 
         [Required]
-        [ForeignKey("Usuario")]
-        [Column("fk_id_usuario")]
-        public int FkIdUsuario { get; set; }
-
-        public Usuario Usuario { get; set; } = null!;
+        [MaxLength(15)]
+        [Column("especialidad_docente")]
+        public string EspecialidadDocente { get; set; } = string.Empty;
     }
 }

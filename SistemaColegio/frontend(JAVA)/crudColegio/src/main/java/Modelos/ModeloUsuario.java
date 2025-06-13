@@ -1,23 +1,36 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Modelos;
 
-/**
- *
- * @author Admin
- */
 public class ModeloUsuario {
-  private int idUsuario;
+    public ModeloUsuario() {
+    }
+
+    public ModeloUsuario(int idUsuario, String nombre, String apellido, String username, String pass, String correo, String rol) {
+        this.idUsuario = idUsuario;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.username = username;
+        this.pass = pass;
+        this.correo = correo;
+        this.rol = rol;
+    }
+
+    private int idUsuario;
     private String nombre;
     private String apellido;
     private String username;
     private String pass;
     private String correo;
     private String rol;
-    
-    
+
+    public ModeloUsuario(String nombre, String apellido, String username, String pass, String correo, String rol) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.username = username;
+        this.pass = pass;
+        this.correo = correo;
+        this.rol = rol;
+    }
+
     public int getIdUsuario() {
         return idUsuario;
     }
@@ -73,7 +86,17 @@ public class ModeloUsuario {
     public void setRol(String rol) {
         this.rol = rol;
     }
- 
-    
-    
+
+    @Override
+    public String toString() {
+        return "ModeloUsuario{" +
+                "idUsuario=" + idUsuario +
+                ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", username='" + username + '\'' +
+                ", pass='" + pass + '\'' +
+                ", correo='" + correo + '\'' +
+                ", rol='" + rol + '\'' +
+                '}';
+    }
 }

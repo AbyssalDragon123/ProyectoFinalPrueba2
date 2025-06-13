@@ -12,11 +12,11 @@ namespace ColegioAPI.Models
 
         [Required]
         [Column("grado")]
-        public string Grado { get; set; }
+        public string Grado { get; set; } = string.Empty;
 
         [Required]
         [Column("seccion")]
-        public string Seccion { get; set; }
+        public string Seccion { get; set; } = string.Empty;
     }
 
 }

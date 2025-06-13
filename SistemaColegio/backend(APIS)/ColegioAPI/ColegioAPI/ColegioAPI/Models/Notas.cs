@@ -15,28 +15,25 @@ namespace ColegioAPI.Models
         [Column("nota")]
         public decimal NotaValor { get; set; }
 
-        [Required]
-        [Column("descripcion")]
+       [Required]
+        [Column("descripcion")] 
         public string Descripcion { get; set; } = string.Empty;
+ 
 
         [Required]
         [Column("fk_id_alumno")]
-        public int FkIdAlumno { get; set; }
+        public int? FkIdAlumno { get; set; }
 
         [Required]
         [Column("fk_id_aula")]
-        public int FkIdAula { get; set; }
+        public int? FkIdAula { get; set; }
 
         [Required]
         [Column("fk_id_docente")]
-        public int FkIdDocente { get; set; }
+        public int? FkIdDocente { get; set; }
 
         [Required]
         [Column("fk_id_asignatura")]
-        public int FkIdAsignatura { get; set; }
-
-        [Required]
-        [Column("fk_id_unidad")]
-        public int FkIdUnidad { get; set; }
+        public int? FkIdAsignatura { get; set; }
     }
 }

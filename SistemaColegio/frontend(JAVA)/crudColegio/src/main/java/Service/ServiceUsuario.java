@@ -8,27 +8,68 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import javax.mail.MessagingException;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import javax.mail.*;
+import javax.mail.internet.*;
+import java.util.Properties;
 
 public class ServiceUsuario {
     private static final String BASE_URL = "http://localhost:5148/api/Usuario";
-    
-    /**
-     * Obtiene todos los usuarios desde la API
-     * @return Lista de usuarios
-     * @throws Exception Si ocurre un error en la comunicación
-     */
+    private final String token;
+
+    public ServiceUsuario(String token) {
+        this.token = token;
+        System.out.println("ServiceUsuario token recibido: " + token);
+    }
+
+    public void enviarCorreoBienvenida(String destinatario, String usuario, String contrasena) throws MessagingException {
+        String remitente = "tuemail@gmail.com"; // Cambia por tu correo
+        String clave = "tuClaveApp"; // Cambia por tu clave de app o contraseña
+
+        Properties props = new Properties();
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+
+        Session session = Session.getInstance(props, new Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(remitente, clave);
+            }
+        });
+
+        Message message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(remitente));
+        message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(destinatario));
+        message.setSubject("Bienvenido a la aplicación");
+
+        String contenido = "Hola " + usuario + ",\n\n" +
+                "Tu cuenta ha sido creada exitosamente.\n" +
+                "Usuario: " + usuario + "\n" +
+                "Contraseña: " + contrasena + "\n\n" +
+                "Por seguridad, te recomendamos cambiar tu contraseña en el primer inicio de sesión.\n\n" +
+                "Saludos,\nEquipo de soporte";
+
+        message.setText(contenido);
+
+        Transport.send(message);
+    }
+
     public List<ModeloUsuario> getUsuarios() throws Exception {
         URL url = new URL(BASE_URL);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
         conn.setRequestProperty("Accept", "application/json");
-        
+        if (token != null && !token.isEmpty()) {
+            conn.setRequestProperty("Authorization", "Bearer " + token);
+        }
+
         if (conn.getResponseCode() != 200) {
             throw new RuntimeException("Error HTTP: " + conn.getResponseCode());
         }
-        
+
         BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
         StringBuilder response = new StringBuilder();
         String line;
@@ -36,11 +77,10 @@ public class ServiceUsuario {
             response.append(line);
         }
         conn.disconnect();
-        
-        // Parsear JSON a lista de usuarios
+
         List<ModeloUsuario> usuarios = new ArrayList<>();
         JSONArray jsonArray = new JSONArray(response.toString());
-        
+
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject jsonObj = jsonArray.getJSONObject(i);
             ModeloUsuario usuario = new ModeloUsuario();
@@ -53,30 +93,27 @@ public class ServiceUsuario {
             usuario.setRol(jsonObj.getString("rol"));
             usuarios.add(usuario);
         }
-        
+
         return usuarios;
     }
-    
-    /**
-     * Obtiene un usuario por su ID
-     * @param id ID del usuario
-     * @return Usuario encontrado o null si no existe
-     * @throws Exception Si ocurre un error en la comunicación
-     */
+
     public ModeloUsuario getUsuario(int id) throws Exception {
         URL url = new URL(BASE_URL + "/" + id);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
         conn.setRequestProperty("Accept", "application/json");
-        
+        if (token != null && !token.isEmpty()) {
+            conn.setRequestProperty("Authorization", "Bearer " + token);
+        }
+
         if (conn.getResponseCode() == 404) {
             return null;
         }
-        
+
         if (conn.getResponseCode() != 200) {
             throw new RuntimeException("Error HTTP: " + conn.getResponseCode());
         }
-        
+
         BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
         StringBuilder response = new StringBuilder();
         String line;
@@ -84,8 +121,7 @@ public class ServiceUsuario {
             response.append(line);
         }
         conn.disconnect();
-        
-        // Parsear JSON a usuario
+
         JSONObject jsonObj = new JSONObject(response.toString());
         ModeloUsuario usuario = new ModeloUsuario();
         usuario.setIdUsuario(jsonObj.getInt("idUsuario"));
@@ -95,24 +131,21 @@ public class ServiceUsuario {
         usuario.setPass(jsonObj.getString("pass"));
         usuario.setCorreo(jsonObj.optString("correo", ""));
         usuario.setRol(jsonObj.getString("rol"));
-        
+
         return usuario;
     }
-    
-    /**
-     * Crea un nuevo usuario
-     * @param usuario Usuario a crear
-     * @return Usuario creado con su ID asignado
-     * @throws Exception Si ocurre un error en la comunicación
-     */
+
     public ModeloUsuario crearUsuario(ModeloUsuario usuario) throws Exception {
+        System.out.println("Token usado en crearUsuario: " + token);
         URL url = new URL(BASE_URL);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("POST");
         conn.setRequestProperty("Content-Type", "application/json");
+        if (token != null && !token.isEmpty()) {
+            conn.setRequestProperty("Authorization", "Bearer " + token);
+        }
         conn.setDoOutput(true);
-        
-        // Crear JSON del usuario
+
         JSONObject jsonUsuario = new JSONObject();
         jsonUsuario.put("nombre", usuario.getNombre());
         jsonUsuario.put("apellido", usuario.getApellido());
@@ -120,19 +153,16 @@ public class ServiceUsuario {
         jsonUsuario.put("pass", usuario.getPass());
         jsonUsuario.put("correo", usuario.getCorreo());
         jsonUsuario.put("rol", usuario.getRol());
-        
-        // Enviar JSON
+
         try (OutputStream os = conn.getOutputStream()) {
             byte[] input = jsonUsuario.toString().getBytes("utf-8");
             os.write(input, 0, input.length);
         }
-        
-        // Verificar respuesta
+
         if (conn.getResponseCode() != 201) {
             throw new RuntimeException("Error HTTP: " + conn.getResponseCode());
         }
-        
-        // Leer respuesta
+
         BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
         StringBuilder response = new StringBuilder();
         String line;
@@ -140,28 +170,62 @@ public class ServiceUsuario {
             response.append(line);
         }
         conn.disconnect();
-        
-        // Parsear JSON a usuario
+
         JSONObject jsonObj = new JSONObject(response.toString());
         usuario.setIdUsuario(jsonObj.getInt("idUsuario"));
-        
+
         return usuario;
     }
-    
-    /**
-     * Actualiza un usuario existente
-     * @param usuario Usuario con los datos actualizados
-     * @return true si se actualizó correctamente, false en caso contrario
-     * @throws Exception Si ocurre un error en la comunicación
-     */
+
+    // Nuevo método para registrar usuario públicamente (sin token)
+    public ModeloUsuario registrarUsuarioPublico(ModeloUsuario usuario) throws Exception {
+        URL url = new URL(BASE_URL + "/registro-publico");
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("POST");
+        conn.setRequestProperty("Content-Type", "application/json");
+        conn.setDoOutput(true);
+
+        JSONObject jsonUsuario = new JSONObject();
+        jsonUsuario.put("nombre", usuario.getNombre());
+        jsonUsuario.put("apellido", usuario.getApellido());
+        jsonUsuario.put("username", usuario.getUsername());
+        jsonUsuario.put("pass", usuario.getPass());
+        jsonUsuario.put("correo", usuario.getCorreo());
+        jsonUsuario.put("rol", usuario.getRol());
+
+        try (OutputStream os = conn.getOutputStream()) {
+            byte[] input = jsonUsuario.toString().getBytes("utf-8");
+            os.write(input, 0, input.length);
+        }
+
+        if (conn.getResponseCode() != 201) {
+            throw new RuntimeException("Error HTTP: " + conn.getResponseCode());
+        }
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+        StringBuilder response = new StringBuilder();
+        String line;
+        while ((line = br.readLine()) != null) {
+            response.append(line);
+        }
+        conn.disconnect();
+
+        JSONObject jsonObj = new JSONObject(response.toString());
+        usuario.setIdUsuario(jsonObj.getInt("idUsuario"));
+
+        return usuario;
+    }
+
     public boolean actualizarUsuario(ModeloUsuario usuario) throws Exception {
         URL url = new URL(BASE_URL + "/" + usuario.getIdUsuario());
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("PUT");
         conn.setRequestProperty("Content-Type", "application/json");
+        if (token != null && !token.isEmpty()) {
+            conn.setRequestProperty("Authorization", "Bearer " + token);
+        }
         conn.setDoOutput(true);
-        
-        // Crear JSON del usuario
+
         JSONObject jsonUsuario = new JSONObject();
         jsonUsuario.put("idUsuario", usuario.getIdUsuario());
         jsonUsuario.put("nombre", usuario.getNombre());
@@ -170,85 +234,77 @@ public class ServiceUsuario {
         jsonUsuario.put("pass", usuario.getPass());
         jsonUsuario.put("correo", usuario.getCorreo());
         jsonUsuario.put("rol", usuario.getRol());
-        
-        // Enviar JSON
+
         try (OutputStream os = conn.getOutputStream()) {
             byte[] input = jsonUsuario.toString().getBytes("utf-8");
             os.write(input, 0, input.length);
         }
-        
-        // Verificar respuesta
+
         int responseCode = conn.getResponseCode();
         conn.disconnect();
-        return responseCode == 204; // 204 No Content
+        return responseCode == 204;
     }
-    
-    /**
-     * Elimina un usuario por su ID
-     * @param id ID del usuario a eliminar
-     * @return true si se eliminó correctamente, false en caso contrario
-     * @throws Exception Si ocurre un error en la comunicación
-     */
+
     public boolean eliminarUsuario(int id) throws Exception {
         URL url = new URL(BASE_URL + "/" + id);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("DELETE");
-        
-        // Verificar respuesta
+        if (token != null && !token.isEmpty()) {
+            conn.setRequestProperty("Authorization", "Bearer " + token);
+        }
+
         int responseCode = conn.getResponseCode();
         conn.disconnect();
-        return responseCode == 204; // 204 No Content
+        return responseCode == 204;
     }
-    
-    /**
-     * Recupera la contraseña de un usuario
-     * @param username Nombre de usuario
-     * @param nuevaContrasena Nueva contraseña
-     * @return true si se recuperó correctamente, false en caso contrario
-     * @throws Exception Si ocurre un error en la comunicación
-     */
+
     public boolean recuperarContrasena(String username, String nuevaContrasena) throws Exception {
         URL url = new URL(BASE_URL + "/RecuperarContrasena");
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("PUT");
         conn.setRequestProperty("Content-Type", "application/json");
+        if (token != null && !token.isEmpty()) {
+            conn.setRequestProperty("Authorization", "Bearer " + token);
+        }
         conn.setDoOutput(true);
-        
-        // Crear JSON para recuperar contraseña
+
         JSONObject jsonData = new JSONObject();
         jsonData.put("username", username);
         jsonData.put("nuevaContrasena", nuevaContrasena);
-        
-        // Enviar JSON
+
         try (OutputStream os = conn.getOutputStream()) {
             byte[] input = jsonData.toString().getBytes("utf-8");
             os.write(input, 0, input.length);
         }
-        
-        // Verificar respuesta
+
         int responseCode = conn.getResponseCode();
         conn.disconnect();
-        return responseCode == 200; // 200 OK
+        return responseCode == 200;
     }
-    
-    /**
-     * Verifica las credenciales de un usuario para el login
-     * @param username Nombre de usuario
-     * @param password Contraseña
-     * @return Usuario si las credenciales son correctas, null en caso contrario
-     * @throws Exception Si ocurre un error en la comunicación
-     */
-    public ModeloUsuario login(String username, String password) throws Exception {
-        // Obtener todos los usuarios
-        List<ModeloUsuario> usuarios = getUsuarios();
-        
-        // Buscar coincidencia de usuario y contraseña
-        for (ModeloUsuario usuario : usuarios) {
-            if (usuario.getUsername().equals(username) && usuario.getPass().equals(password)) {
-                return usuario; // Usuario encontrado
-            }
-        }
-        
-        return null; // Usuario no encontrado o credenciales incorrectas
+    public void enviarCorreoBienvenidaBackend(String destinatario, String usuario, String contrasena) throws Exception {
+    URL url = new URL("http://localhost:5148/api/Email/enviar-bienvenida");
+    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+    conn.setRequestMethod("POST");
+    conn.setRequestProperty("Content-Type", "application/json");
+    if (token != null && !token.isEmpty()) {
+        conn.setRequestProperty("Authorization", "Bearer " + token);
     }
+    conn.setDoOutput(true);
+
+    JSONObject json = new JSONObject();
+    json.put("Destinatario", destinatario);
+    json.put("Usuario", usuario);
+    json.put("Contrasena", contrasena);
+
+    try (OutputStream os = conn.getOutputStream()) {
+        byte[] input = json.toString().getBytes("utf-8");
+        os.write(input, 0, input.length);
+    }
+
+    int responseCode = conn.getResponseCode();
+    if (responseCode != 200) {
+        throw new RuntimeException("Error al enviar correo: HTTP " + responseCode);
+    }
+    conn.disconnect();
+}
 }

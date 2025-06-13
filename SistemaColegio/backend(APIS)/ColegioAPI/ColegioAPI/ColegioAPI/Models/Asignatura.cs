@@ -21,6 +21,4 @@ public class Asignatura
     [Column("fk_id_docente")]
     public int FkIdDocente { get; set; }
 
-    [ForeignKey("FkIdDocente")] // llave foranea
-    public Docente Docente { get; set; } = null!; // docente que imparte la asignatura
 }

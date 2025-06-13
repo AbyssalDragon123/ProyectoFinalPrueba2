@@ -24,12 +24,10 @@ public class Alumnos
     [Column("genero_alumno")]
     public string GeneroAlumno { get; set; } = string.Empty;
 
-    [Required]
     [Column("fk_id_encargado")]
-    public int FkIdEncargado { get; set; }
+    public int? FkIdEncargado { get; set; } // Changed to nullable int
 
-    [ForeignKey("FkIdEncargado")]
-    public Encargado Encargado { get; set; } = null!;
+
 
     [Required]
     [Column("fk_id_aula")]

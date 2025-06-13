@@ -4,6 +4,8 @@
  */
 package View;
 
+import Modelos.SesionUsuario;
+import static Modelos.SesionUsuario.token;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.event.FocusAdapter;
@@ -90,7 +92,7 @@ public class ViewLogin extends javax.swing.JFrame {
                 if (String.valueOf(txtPassword.getPassword()).equals("********")) {
                     txtPassword.setText("");
                     txtPassword.setForeground(Color.WHITE);
-                    txtPassword.setEchoChar('•');
+                    txtPassword.setEchoChar('*');
                 }
             }
             public void focusLost(FocusEvent evt) {
@@ -105,9 +107,8 @@ public class ViewLogin extends javax.swing.JFrame {
 
     // Métodos para que el controller acceda a los componentes
     public JTextField getTxtUsuario() { return Usuario; }
-    public JPasswordField jPasswordField() { return txtPassword; }
+    public JPasswordField getPassword() { return txtPassword; }
     public JButton getBtnLogin() { return jbtLogin; }
-    public JLabel getBtnRecuperar() { return jbtRecuperar; }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -127,10 +128,6 @@ public class ViewLogin extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         txtVerContrasena = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel5 = new javax.swing.JLabel();
-        jbtRecuperar = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        lblURL1 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         lblSalir = new javax.swing.JLabel();
 
@@ -141,7 +138,7 @@ public class ViewLogin extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Inicio de Sesion");
+        jLabel1.setText("Inicio de Sesión");
 
         Usuario.setBackground(new java.awt.Color(81, 89, 102));
         Usuario.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -177,36 +174,6 @@ public class ViewLogin extends javax.swing.JFrame {
         jSeparator1.setBackground(new java.awt.Color(251, 255, 228));
         jSeparator1.setForeground(new java.awt.Color(251, 255, 228));
         jSeparator1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(4, 189, 125), 4, true));
-
-        jLabel5.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("¿Olvidaste tu Contraseña?");
-
-        jbtRecuperar.setBackground(new java.awt.Color(4, 189, 125));
-        jbtRecuperar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jbtRecuperar.setForeground(new java.awt.Color(4, 189, 125));
-        jbtRecuperar.setText("Clic Aqui");
-        jbtRecuperar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jbtRecuperar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jbtRecuperarMouseClicked(evt);
-            }
-        });
-
-        jLabel6.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("¿No tienes Cuenta?");
-
-        lblURL1.setBackground(new java.awt.Color(4, 189, 125));
-        lblURL1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        lblURL1.setForeground(new java.awt.Color(4, 189, 125));
-        lblURL1.setText("Registrate Aqui");
-        lblURL1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblURL1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblURL1MouseClicked(evt);
-            }
-        });
 
         jLabel7.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -248,25 +215,14 @@ public class ViewLogin extends javax.swing.JFrame {
                                     .addComponent(jbtLogin, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(txtPassword, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtVerContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(93, 93, 93)
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lblSalir)))))
+                                .addComponent(txtVerContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(16, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jbtRecuperar))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblURL1)))
-                .addGap(98, 98, 98))
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblSalir)
+                .addGap(128, 128, 128))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -288,17 +244,9 @@ public class ViewLogin extends javax.swing.JFrame {
                 .addComponent(jbtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jbtRecuperar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(lblURL1))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(lblSalir))
-                .addGap(26, 26, 26))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -319,24 +267,12 @@ public class ViewLogin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbtRecuperarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtRecuperarMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbtRecuperarMouseClicked
-
-    private void lblURL1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblURL1MouseClicked
-// Abre el formulario de registro y cierra el login
-    new ViewUsuarios().setVisible(true);
-    this.dispose();
-    }//GEN-LAST:event_lblURL1MouseClicked
-
     private void lblSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSalirMouseClicked
         // TODO add your handling code here:
-
     }//GEN-LAST:event_lblSalirMouseClicked
 
     private void jbtLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtLoginActionPerformed
 
-        
     }//GEN-LAST:event_jbtLoginActionPerformed
 
     private void UsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsuarioActionPerformed
@@ -382,16 +318,13 @@ public class ViewLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton jbtLogin;
-    private javax.swing.JLabel jbtRecuperar;
     private javax.swing.JLabel lblSalir;
-    private javax.swing.JLabel lblURL1;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JLabel txtVerContrasena;
     // End of variables declaration//GEN-END:variables
+
 }

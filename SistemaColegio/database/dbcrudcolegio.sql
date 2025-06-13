@@ -10,7 +10,9 @@ CREATE TABLE IF NOT EXISTS usuario (
     username VARCHAR(50) NOT NULL UNIQUE,
     pass VARCHAR(255) NOT NULL,
     correo VARCHAR(100) UNIQUE,
-    rol ENUM('docente', 'admin') DEFAULT 'docente'
+    rol ENUM('admin', 'director') DEFAULT 'admin',
+	reset_code VARCHAR(255) NULL,
+	reset_code_expiration DATETIME NULL
 );
 
 -- Tabla encargado
@@ -50,8 +52,7 @@ CREATE TABLE IF NOT EXISTS docente (
     apellido_docente VARCHAR(50) NOT NULL,
     correo_docente VARCHAR(100) NOT NULL,
     telefono_docente VARCHAR(15) NOT NULL,
-    fk_id_usuario INT NOT NULL,
-    FOREIGN KEY (fk_id_usuario) REFERENCES usuario(id_usuario) ON DELETE CASCADE
+    especialidad_docente varchar(50) NOT NULL
 );
 
 -- Tabla asignatura
@@ -63,15 +64,6 @@ CREATE TABLE IF NOT EXISTS asignatura (
     FOREIGN KEY (fk_id_docente) REFERENCES docente(id_docente) ON DELETE CASCADE
 );
 
--- Tabla unidad
-CREATE TABLE IF NOT EXISTS unidad (
-    id_unidad INT AUTO_INCREMENT PRIMARY KEY,
-    nombre_unidad VARCHAR(100) NOT NULL,
-    descripcion TEXT,
-    fk_id_asignatura INT NOT NULL,
-    FOREIGN KEY (fk_id_asignatura) REFERENCES asignatura(id_asignatura) ON DELETE CASCADE
-);
-
 -- Tabla notas
 CREATE TABLE IF NOT EXISTS notas (
     id_notas INT AUTO_INCREMENT PRIMARY KEY,
@@ -81,10 +73,9 @@ CREATE TABLE IF NOT EXISTS notas (
     fk_id_aula INT NOT NULL,
     fk_id_docente INT NOT NULL,
     fk_id_asignatura INT NOT NULL,
-    fk_id_unidad INT NOT NULL,
+
     FOREIGN KEY (fk_id_docente) REFERENCES docente(id_docente) ON DELETE CASCADE,
     FOREIGN KEY (fk_id_asignatura) REFERENCES asignatura(id_asignatura) ON DELETE CASCADE,
-    FOREIGN KEY (fk_id_unidad) REFERENCES unidad(id_unidad) ON DELETE CASCADE,
     FOREIGN KEY (fk_id_alumno) REFERENCES alumno(id_alumno) ON DELETE CASCADE,
     FOREIGN KEY (fk_id_aula) REFERENCES aula(id_aula) ON DELETE CASCADE
 );
